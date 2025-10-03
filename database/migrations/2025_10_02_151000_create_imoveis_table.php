@@ -21,6 +21,7 @@ return new class extends Migration
             // Endereço do imóvel
             $table->string('endereco')->nullable();
             $table->string('bairro')->nullable();
+            $table->string('cep')->nullable();
             $table->string('cidade')->nullable();
             $table->string('estado')->nullable();
 
