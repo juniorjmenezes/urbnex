@@ -12,7 +12,8 @@ return new class extends Migration
             $table->id();
 
             // Características do imóvel
-            $table->string('lote')->nullable();
+            $table->string('lote_reurb')->nullable();
+            $table->string('lote_iptu')->nullable();
             $table->string('quadra')->nullable();
             $table->string('nucleo_urbano')->nullable(); // núcleo urbano informal
             $table->string('matricula')->nullable();
