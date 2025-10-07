@@ -12,12 +12,15 @@ return new class extends Migration
             $table->id();
 
             // Características do imóvel
-            $table->string('lote_reurb')->nullable();
-            $table->string('lote_iptu')->nullable();
+            $table->string('nucleo_urbano')->nullable();
             $table->string('quadra')->nullable();
-            $table->string('nucleo_urbano')->nullable(); // núcleo urbano informal
             $table->string('matricula')->nullable();
             $table->date('data_prenotacao')->nullable();
+            $table->string('lote')->nullable();
+            $table->string('area')->nullable();
+            $table->string('area_edificada')->nullable();
+            $table->string('perimetro')->nullable();
+            $table->string('art')->nullable();
 
             // Endereço do imóvel
             $table->string('endereco')->nullable();
@@ -25,6 +28,9 @@ return new class extends Migration
             $table->string('cep')->nullable();
             $table->string('cidade')->nullable();
             $table->string('estado')->nullable();
+
+            // Chave estrangeira
+            $table->foreignId('processo_id')->constrained()->onDelete('cascade');
 
             // Timestamps
             $table->timestamps();
