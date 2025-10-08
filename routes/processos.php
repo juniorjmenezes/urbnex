@@ -1,7 +1,7 @@
 <?php
 
-use App\Http\Controllers\ProcessoController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProcessoController;
 
 Route::get('/processos', [ProcessoController::class, 'index'])->name('processos.index');
 Route::get('/processos/create', [ProcessoController::class, 'create'])->name('processos.create');

@@ -33,14 +33,18 @@
             </div>
             <div class="col-md-4">
                 <div class="mb-3">
-                    <label for="imovel" class="form-label">Imóvel</label>
-                    <input type="text" id="imovel" class="form-control" name="imovel_id">
+                    <label for="imovel" class="form-label">Empresa Responsável</label>
+                    <select data-choices data-placeholder="Selecione..." id="imovel" class="form-control" name="imovel_id">
+                        <option>Lote X</option>
+                        <option>Lote Y</option>
+                        <option>Lote Z</option>
+                    </select>
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="mb-3">
-                    <label for="empresa" class="form-label">Empresa Responsável</label>
-                    <input type="text" id="empresa" class="form-control" name="empresa_id">
+                    <label for="dataAbertura" class="form-label">Representante</label>
+                    <input type="text" id="representante" class="form-control" name="representante">
                 </div>
             </div>
         </div>

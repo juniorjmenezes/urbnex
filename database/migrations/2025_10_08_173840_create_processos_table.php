@@ -17,9 +17,9 @@ return new class extends Migration
             $table->text('observacoes')->nullable();
 
             // Chaves estrangeiras
-            $table->foreignId('imovel_id')->constrained()->onDelete('cascade');
-            $table->foreignId('empresa_id')->constrained()->onDelete('cascade');
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->foreignId('imovel_id')->unique()->constrained('imoveis')->onDelete('cascade');
+            $table->foreignId('pessoa_juridica_id')->constrained('pessoas_juridicas')->onDelete('cascade');
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
 
             // Timestamps
             $table->timestamps();

@@ -11,8 +11,7 @@ class Representante extends Model
         'cpf',
         'rg',
         'estado_civil',
-        'profissao',
-        'endereco',
+        'endereco_id',
         'empresa_id',
     ];
 

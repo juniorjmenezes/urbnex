@@ -17,15 +17,16 @@ return new class extends Migration
             $table->string('rg', 20)->nullable();
             $table->string('estado_civil')->nullable();
             $table->string('profissao')->nullable();
-            $table->string('endereco')->nullable();
+            $table->string('email')->nullable();
+            $table->string('telefone')->nullable();
 
             // Chaves estrangeiras
-            $table->foreignId('empresa_id')->constrained()->onDelete('cascade');
+            $table->foreignId('endereco_id')->nullable()->constrained('enderecos')->nullOnDelete();
+            $table->foreignId('pessoa_juridica_id')->constrained('pessoas_juridicas')->onDelete('cascade');
 
             // Timestamps
             $table->timestamps();
         });
-        
     }
 
     public function down(): void

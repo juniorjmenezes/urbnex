@@ -15,17 +15,21 @@ class Imovel extends Model
         'area',
         'area_edificada',
         'perimetro',
+        'latitude',
+        'longitude',
         'art',
-        'endereco',
-        'bairro',
-        'cep',
-        'cidade',
-        'estado',
-        'processo_id'
+        'endereco_id',
     ];
 
+    // Processo associado (um-para-um)
     public function processo()
     {
-        return $this->belongsTo(Processo::class);
+        return $this->hasOne(Processo::class);
+    }
+
+    // Endereço do imóvel
+    public function endereco()
+    {
+        return $this->belongsTo(Endereco::class);
     }
 }

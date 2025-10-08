@@ -22,15 +22,12 @@ return new class extends Migration
             $table->string('perimetro')->nullable();
             $table->string('art')->nullable();
 
-            // Endereço do imóvel
-            $table->string('endereco')->nullable();
-            $table->string('bairro')->nullable();
-            $table->string('cep')->nullable();
-            $table->string('cidade')->nullable();
-            $table->string('estado')->nullable();
-
-            // Chave estrangeira
-            $table->foreignId('processo_id')->constrained()->onDelete('cascade');
+            // Coordenadas geográficas
+            $table->decimal('latitude', 10, 7)->nullable();
+            $table->decimal('longitude', 10, 7)->nullable();
+            
+            // Relacionamento com endereço
+            $table->foreignId('endereco_id')->nullable()->constrained('enderecos')->nullOnDelete();
 
             // Timestamps
             $table->timestamps();
