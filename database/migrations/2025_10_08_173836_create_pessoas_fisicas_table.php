@@ -13,12 +13,13 @@ return new class extends Migration
 
             // Campos principais
             $table->string('nome');
-            $table->string('cpf', 20)->unique();
-            $table->string('rg', 20)->nullable();
+            $table->string('cpf', 14)->unique();
+            $table->string('rg', 14)->nullable()->unique();
             $table->string('estado_civil')->nullable();
             $table->string('profissao')->nullable();
             $table->string('email')->nullable();
-            $table->string('telefone')->nullable();
+            $table->string('telefone_1', 15);
+            $table->string('telefone_2', 15)->nullable();
 
             // Chave estrangeira
             $table->foreignId('endereco_id')->nullable()->constrained('enderecos')->nullOnDelete();

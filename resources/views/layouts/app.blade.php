@@ -45,8 +45,6 @@
     <script src="{{ asset('assets/js/vendor.min.js') }}"></script>
     <!-- App JS -->
     <script src="{{ asset('assets/js/app.js') }}"></script>
-    <!-- Apex Charts JS -->
-    <script src="{{ asset('assets/js/apexcharts.min.js') }}"></script>
     @yield('scripts')
 </body>
 </html>

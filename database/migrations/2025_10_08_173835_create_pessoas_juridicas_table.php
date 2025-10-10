@@ -14,11 +14,12 @@ return new class extends Migration
             // Campos principais
             $table->string('razao_social');
             $table->string('nome_fantasia')->nullable();
-            $table->string('cnpj', 20)->unique();
+            $table->string('cnpj', 18)->unique();
             $table->string('email')->nullable();
-            $table->string('telefone')->nullable();
+            $table->string('telefone_1', 15)->nullable();
+            $table->string('telefone_2', 15);
 
-            // Chave estrangeira
+            // Relacionamento com Endereço
             $table->foreignId('endereco_id')->nullable()->constrained('enderecos')->nullOnDelete();
 
             // Timestamps

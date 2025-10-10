@@ -14,7 +14,6 @@ class Endereco extends Model
         'bairro',
         'cidade',
         'estado',
-        'pais',
     ];
 
     public function empresa()
