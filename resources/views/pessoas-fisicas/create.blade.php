@@ -39,7 +39,14 @@
                 <div class="col-md-3">
                     <div class="mb-3">
                         <label for="estado_civil" class="form-label">Estado Civil</label>
-                        <input type="text" id="estado_civil" class="form-control" name="estado_civil">
+                        <select id="estado_civil" name="estado_civil" class="form-control" data-choices>
+                            <option value="">Selecione...</option>
+                            <option value="Solteiro">Solteiro</option>
+                            <option value="Casado">Casado</option>
+                            <option value="Separado">Separado</option>
+                            <option value="Divorciado">Divorciado</option>
+                            <option value="Viúvo">Viúvo</option>
+                        </select>
                     </div>
                 </div>
 
@@ -48,55 +55,54 @@
                         <label for="profissao" class="form-label">Profissão</label>
                         <select id="profissao" name="profissao" class="form-control" data-choices>
                             <option value="">Selecione...</option>
-                            <option value="Administrador(a)">Administrador(a)</option>
-                            <option value="Advogado(a)">Advogado(a)</option>
+                            <option value="Administrador">Administrador</option>
+                            <option value="Advogado">Advogado</option>
                             <option value="Agente de Segurança">Agente de Segurança</option>
-                            <option value="Arquiteto(a)">Arquiteto(a)</option>
+                            <option value="Arquiteto">Arquiteto</option>
                             <option value="Artista">Artista</option>
                             <option value="Assistente Administrativo">Assistente Administrativo</option>
                             <option value="Assistente Social">Assistente Social</option>
                             <option value="Atendente">Atendente</option>
-                            <option value="Autônomo(a)">Autônomo(a)</option>
-                            <option value="Bancário(a)">Bancário(a)</option>
-                            <option value="Bibliotecário(a)">Bibliotecário(a)</option>
-                            <option value="Biólogo(a)">Biólogo(a)</option>
-                            <option value="Cabeleireiro(a)">Cabeleireiro(a)</option>
-                            <option value="Cantor(a)">Cantor(a)</option>
-                            <option value="Contador(a)">Contador(a)</option>
-                            <option value="Cozinheiro(a)">Cozinheiro(a)</option>
-                            <option value="Designer Gráfico(a)">Designer Gráfico(a)</option>
-                            <option value="Desenvolvedor(a)">Desenvolvedor(a)</option>
+                            <option value="Autônomo">Autônomo</option>
+                            <option value="Bancário">Bancário</option>
+                            <option value="Bibliotecário">Bibliotecário</option>
+                            <option value="Biólogo">Biólogo</option>
+                            <option value="Cabeleireiro">Cabeleireiro</option>
+                            <option value="Cantor">Cantor</option>
+                            <option value="Contador">Contador</option>
+                            <option value="Cozinheiro">Cozinheiro</option>
+                            <option value="Designer Gráfico">Designer Gráfico</option>
+                            <option value="Desenvolvedor">Desenvolvedor</option>
                             <option value="Dentista">Dentista</option>
                             <option value="Economista">Economista</option>
                             <option value="Eletricista">Eletricista</option>
-                            <option value="Enfermeiro(a)">Enfermeiro(a)</option>
-                            <option value="Engenheiro Civil(a)">Engenheiro Civil(a)</option>
-                            <option value="Engenheiro Mecânico(a)">Engenheiro Mecânico(a)</option>
-                            <option value="Empresário(a)">Empresário(a)</option>
-                            <option value="Farmacêutico(a)">Farmacêutico(a)</option>
+                            <option value="Enfermeiro">Enfermeiro</option>
+                            <option value="Engenheiro Civil">Engenheiro Civil</option>
+                            <option value="Engenheiro Mecânico">Engenheiro Mecânico</option>
+                            <option value="Empresário">Empresário</option>
+                            <option value="Farmacêutico">Farmacêutico</option>
                             <option value="Fisioterapeuta">Fisioterapeuta</option>
-                            <option value="Fotógrafo(a)">Fotógrafo(a)</option>
-                            <option value="Funcionário Público(a)">Funcionário Público(a)</option>
-                            <option value="Garçom(a)">Garçom(a)</option>
+                            <option value="Fotógrafo">Fotógrafo</option>
+                            <option value="Funcionário Público">Funcionário Público</option>
+                            <option value="Garçom">Garçom</option>
                             <option value="Jornalista">Jornalista</option>
-                            <option value="Marceneiro(a)">Marceneiro(a)</option>
-                            <option value="Médico(a)">Médico(a)</option>
+                            <option value="Marceneiro">Marceneiro</option>
+                            <option value="Médico">Médico</option>
                             <option value="Motorista">Motorista</option>
                             <option value="Nutricionista">Nutricionista</option>
-                            <option value="Pedreiro(a)">Pedreiro(a)</option>
-                            <option value="Professor(a)">Professor(a)</option>
+                            <option value="Pedreiro">Pedreiro</option>
+                            <option value="Professor">Professor</option>
                             <option value="Recepcionista">Recepcionista</option>
-                            <option value="Secretário(a)">Secretário(a)</option>
+                            <option value="Secretário">Secretário</option>
                             <option value="Segurança">Segurança</option>
-                            <option value="Soldador(a)">Soldador(a)</option>
-                            <option value="Técnico em Informática(a)">Técnico em Informática(a)</option>
-                            <option value="Vendedor(a)">Vendedor(a)</option>
-                            <option value="Veterinário(a)">Veterinário(a)</option>
+                            <option value="Soldador">Soldador</option>
+                            <option value="Técnico em Informática">Técnico em Informática</option>
+                            <option value="Vendedor">Vendedor</option>
+                            <option value="Veterinário">Veterinário</option>
                             <option value="Outro">Outro</option>
                         </select>
                     </div>
                 </div>
-
 
                 <div class="col-md-3">
                     <div class="mb-3">

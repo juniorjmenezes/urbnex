@@ -15,8 +15,33 @@ class PessoaFisicaController extends Controller
      */
     public function index()
     {
-        $pessoasFisicas = PessoaFisica::with('endereco')->paginate(10);
-        return view('pessoas-fisicas.index', compact('pessoasFisicas'));
+        return view('pessoas-fisicas.index');
+    }
+
+    public function getPessoas(Request $request)
+    {
+        $limit = $request->input('limit', 20);
+        $page  = $request->input('page', 1);
+        $search = $request->input('search');
+
+        $query = PessoaFisica::query();
+
+        if ($search) {
+            $query->where(function($q) use ($search) {
+                $q->where('nome', 'like', "%{$search}%")
+                ->orWhere('cpf', 'like', "%{$search}%")
+                ->orWhere('rg', 'like', "%{$search}%")
+                ->orWhere('email', 'like', "%{$search}%")
+                ->orWhere('telefone', 'like', "%{$search}%");
+            });
+        }
+
+        $pessoas = $query->paginate($limit, ['*'], 'page', $page);
+
+        return response()->json([
+            'data'  => $pessoas->items(),
+            'total' => $pessoas->total()
+        ]);
     }
 
     /**
@@ -35,13 +60,14 @@ class PessoaFisicaController extends Controller
     {
         $validated = $request->validate([
               // Pessoa Física
-            'nome'       => 'required|string|max:255',
-            'cpf'        => 'nullable|string|max:14|unique:pessoas_fisicas,cpf',
-            'rg'         => 'nullable|string|max:14|unique:pessoas_fisicas,rg',
-            'email'      => 'nullable|email|max:255',
-            'telefone_1' => 'nullable|string|max:15',
-            'telefone_2' => 'nullable|string|max:15',
-    
+            'nome'         => 'required|string|max:255',
+            'cpf'          => 'string|max:14|unique:pessoas_fisicas,cpf',
+            'rg'           => 'nullable|string|max:14|unique:pessoas_fisicas,rg',
+            'estado_civil' => 'nullable|string|max:255',
+            'profissao'    => 'nullable|string|max:255',
+            'email'        => 'email|max:255',
+            'telefone'     => 'string|max:15',
+
               // Endereço
             'logradouro'  => 'nullable|string|max:255',
             'numero'      => 'nullable|string|max:5',
@@ -66,15 +92,16 @@ class PessoaFisicaController extends Controller
                 'complemento' => $validated['complemento'] ?? null,
             ]);
     
-            // Cria a pessoa jurídica vinculando o endereço
+            // Cria a Pessoa Física vinculando o Endereço
             PessoaFisica::create([
-                'nome'        => $validated['nome'],
-                'cpf'         => $validated['cpf'],
-                'rg'          => $validated['rg'] ?? null,
-                'email'       => $validated['email'] ?? null,
-                'telefone_1'  => $validated['telefone_1'],
-                'telefone_2'  => $validated['telefone_2'] ?? null,
-                'endereco_id' => $endereco->id ?? null,
+                'nome'         => $validated['nome'],
+                'cpf'          => $validated['cpf'],
+                'rg'           => $validated['rg'] ?? null,
+                'estado_civil' => $validated['estado_civil'] ?? null,
+                'profissao'    => $validated['profissao'] ?? null,
+                'email'        => $validated['email'] ?? null,
+                'telefone'     => $validated['telefone'] ?? null,
+                'endereco_id'  => $endereco->id ?? null,
             ]);
     
             DB::commit();

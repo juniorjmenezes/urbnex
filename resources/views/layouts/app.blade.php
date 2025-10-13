@@ -12,13 +12,19 @@
     <link rel="shortcut icon" href="{{ asset('images/favicon.ico') }}">
     <!-- Vendor CSS -->
     <link href="{{ asset('assets/css/vendor.min.css') }}" rel="stylesheet" type="text/css" />
-    <link href="{{ asset('assets/css/jsvectormap.min.css') }}" rel="stylesheet" type="text/css">
     <!-- App CSS -->
     <link href="{{ asset('assets/css/app.min.css') }}" rel="stylesheet" type="text/css" id="app-style" />
     <!-- Icons CSS -->
     <link href="{{ asset('assets/css/icons.min.css') }}" rel="stylesheet" type="text/css" />
     <!-- Theme Config JS -->
     <script src="{{ asset('assets/js/config.js') }}"></script>
+    <style>
+        /* Estilos personalizados */
+        .choices.is-open .choices__list--dropdown {
+            top: 100% !important;
+            bottom: auto !important;
+        }
+    </style>
     @yield('styles')
 </head>
 <body>

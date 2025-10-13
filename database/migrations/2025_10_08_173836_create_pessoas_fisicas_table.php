@@ -18,8 +18,7 @@ return new class extends Migration
             $table->string('estado_civil')->nullable();
             $table->string('profissao')->nullable();
             $table->string('email')->nullable();
-            $table->string('telefone_1', 15);
-            $table->string('telefone_2', 15)->nullable();
+            $table->string('telefone', 15);
 
             // Chave estrangeira
             $table->foreignId('endereco_id')->nullable()->constrained('enderecos')->nullOnDelete();
