@@ -16,15 +16,10 @@
     <link href="{{ asset('assets/css/app.min.css') }}" rel="stylesheet" type="text/css" id="app-style" />
     <!-- Icons CSS -->
     <link href="{{ asset('assets/css/icons.min.css') }}" rel="stylesheet" type="text/css" />
+    <!-- Notify js CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css" rel="stylesheet" />
     <!-- Theme Config JS -->
     <script src="{{ asset('assets/js/config.js') }}"></script>
-    <style>
-        /* Estilos personalizados */
-        .choices.is-open .choices__list--dropdown {
-            top: 100% !important;
-            bottom: auto !important;
-        }
-    </style>
     @yield('styles')
 </head>
 <body>
@@ -49,8 +44,19 @@
 
     <!-- Vendor JS -->
     <script src="{{ asset('assets/js/vendor.min.js') }}"></script>
+    <!-- Notify js -->
+    <script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
+    <!-- Input Mask js -->
     <!-- App JS -->
     <script src="{{ asset('assets/js/app.js') }}"></script>
+    <script>
+        // Notyf instance
+        const notyf = new Notyf({
+            duration: 5000,
+            position: { x: 'right', y: 'top' },
+            dismissible: true
+        });
+    </script>
     @yield('scripts')
 </body>
 </html>

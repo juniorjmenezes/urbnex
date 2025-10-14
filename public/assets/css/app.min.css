@@ -153,6 +153,7 @@
   --ct-white-rgb: 255, 255, 255;
   --ct-black-rgb: 0, 0, 0;
   --ct-font-sans-serif: "Mozilla Headline", serif;
+  --ct-font-alternate: "Mozilla Text", serif;
   --ct-font-monospace: SFMono-Regular, Menlo, Monaco, Consolas,
     "Liberation Mono", "Courier New", monospace;
   --ct-gradient: linear-gradient(
@@ -21024,3 +21025,6 @@ div:where(.swal2-icon).swal2-success
   background-color: var(--ct-secondary-bg);
 }
 /*# sourceMappingURL=app.min.css.map */
+.text-alternate {
+  font-family: var(--ct-font-alternate);
+}

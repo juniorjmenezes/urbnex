@@ -53,7 +53,7 @@
                 <div class="col-md-3">
                     <div class="mb-3">
                         <label for="profissao" class="form-label">Profissão</label>
-                        <select id="profissao" name="profissao" class="form-control" data-choices>
+                        <select id="profissao" name="profissao" class="form-control select2" data-toggle="select2">
                             <option value="">Selecione...</option>
                             <option value="Administrador">Administrador</option>
                             <option value="Advogado">Advogado</option>
@@ -166,7 +166,6 @@
                     </div>
                 </div>
             </div>
-
             <!-- Botão de salvar -->
             <button type="submit" class="btn btn-primary text-uppercase">Salvar</button>
         </form>

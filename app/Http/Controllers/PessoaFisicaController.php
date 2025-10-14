@@ -15,7 +15,10 @@ class PessoaFisicaController extends Controller
      */
     public function index()
     {
-        return view('pessoas-fisicas.index');
+        $profissoes = config('selects.profissoes');
+        $estados_civis = config('selects.estados_civis');
+
+        return view('pessoas-fisicas.index', compact('profissoes', 'estados_civis'));
     }
 
     public function getPessoas(Request $request)
@@ -24,7 +27,7 @@ class PessoaFisicaController extends Controller
         $page  = $request->input('page', 1);
         $search = $request->input('search');
 
-        $query = PessoaFisica::query();
+        $query = PessoaFisica::query()->orderByDesc('id');
 
         if ($search) {
             $query->where(function($q) use ($search) {
@@ -59,16 +62,16 @@ class PessoaFisicaController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-              // Pessoa Física
+            // Pessoa Física
             'nome'         => 'required|string|max:255',
-            'cpf'          => 'string|max:14|unique:pessoas_fisicas,cpf',
+            'cpf'          => 'nullable|string|max:14|unique:pessoas_fisicas,cpf',
             'rg'           => 'nullable|string|max:14|unique:pessoas_fisicas,rg',
             'estado_civil' => 'nullable|string|max:255',
             'profissao'    => 'nullable|string|max:255',
-            'email'        => 'email|max:255',
-            'telefone'     => 'string|max:15',
+            'email'        => 'nullable|email|max:255',
+            'telefone'     => 'nullable|string|max:15',
 
-              // Endereço
+            // Endereço
             'logradouro'  => 'nullable|string|max:255',
             'numero'      => 'nullable|string|max:5',
             'bairro'      => 'nullable|string|max:255',
@@ -77,10 +80,10 @@ class PessoaFisicaController extends Controller
             'cep'         => 'nullable|string|max:9',
             'complemento' => 'nullable|string|max:255',
         ]);
-    
+
         try {
             DB::beginTransaction();
-    
+
             // Cria o endereço (se houver dados)
             $endereco = Endereco::create([
                 'logradouro'  => $validated['logradouro'] ?? null,
@@ -91,11 +94,11 @@ class PessoaFisicaController extends Controller
                 'cep'         => $validated['cep'] ?? null,
                 'complemento' => $validated['complemento'] ?? null,
             ]);
-    
+
             // Cria a Pessoa Física vinculando o Endereço
-            PessoaFisica::create([
+            $pessoa = PessoaFisica::create([
                 'nome'         => $validated['nome'],
-                'cpf'          => $validated['cpf'],
+                'cpf'          => $validated['cpf'] ?? null,
                 'rg'           => $validated['rg'] ?? null,
                 'estado_civil' => $validated['estado_civil'] ?? null,
                 'profissao'    => $validated['profissao'] ?? null,
@@ -103,16 +106,24 @@ class PessoaFisicaController extends Controller
                 'telefone'     => $validated['telefone'] ?? null,
                 'endereco_id'  => $endereco->id ?? null,
             ]);
-    
+
             DB::commit();
-    
-            return redirect()->route('pessoasFisicas.index')->with('success', 'Pessoa Física criada com sucesso!');
+
+            // Retorna o registro criado em JSON
+            return response()->json([
+                'success' => true,
+                'data' => $pessoa->load('endereco') // opcional, carrega dados do endereço
+            ], 200);
+
         } catch (\Throwable $e) {
             DB::rollBack();
-            return back()->withErrors('Erro ao criar a Pessoa Física: ' . $e->getMessage())->withInput();
+            return response()->json([
+                'success' => false,
+                'message' => 'Erro ao criar a Pessoa Física: ' . $e->getMessage()
+            ], 500);
         }
     }
-    
+
 
     /**
      * Exibir formulário de edição
