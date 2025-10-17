@@ -3,13 +3,9 @@
 @section('title', 'Nova Pessoa Física')
 
 @section('content')
-<div class="mb-3">
-    <h4 class="page-title fs-16 fw-semibold mb-0">@yield('title')</h4>
-</div>
-
 <div class="card">
     <div class="card-header border-bottom border-dashed d-flex align-items-center">
-        <h4 class="header-title">Insira os dados da Pessoa Física</h4>
+        <h4 class="header-title">Nova Pessoa Física</h4>
     </div>
     <div class="card-body">
         <form action="{{ route('pessoasFisicas.store') }}" method="POST">
@@ -39,13 +35,13 @@
                 <div class="col-md-3">
                     <div class="mb-3">
                         <label for="estado_civil" class="form-label">Estado Civil</label>
-                        <select id="estado_civil" name="estado_civil" class="form-control" data-choices>
-                            <option value="">Selecione...</option>
-                            <option value="Solteiro">Solteiro</option>
-                            <option value="Casado">Casado</option>
-                            <option value="Separado">Separado</option>
-                            <option value="Divorciado">Divorciado</option>
-                            <option value="Viúvo">Viúvo</option>
+                        <select id="estado_civil" name="estado_civil" data-placeholder="Escolha..." autocomplete="off">
+                            @foreach ($estados_civis as $estado_civil)
+                                <option></option>
+                                <option value="{{ $estado_civil }}" {{ old('estado_civil') == $estado_civil ? 'selected' : '' }}>
+                                    {{ $estado_civil }}
+                                </option>
+                            @endforeach
                         </select>
                     </div>
                 </div>
@@ -53,53 +49,13 @@
                 <div class="col-md-3">
                     <div class="mb-3">
                         <label for="profissao" class="form-label">Profissão</label>
-                        <select id="profissao" name="profissao" class="form-control select2" data-toggle="select2">
-                            <option value="">Selecione...</option>
-                            <option value="Administrador">Administrador</option>
-                            <option value="Advogado">Advogado</option>
-                            <option value="Agente de Segurança">Agente de Segurança</option>
-                            <option value="Arquiteto">Arquiteto</option>
-                            <option value="Artista">Artista</option>
-                            <option value="Assistente Administrativo">Assistente Administrativo</option>
-                            <option value="Assistente Social">Assistente Social</option>
-                            <option value="Atendente">Atendente</option>
-                            <option value="Autônomo">Autônomo</option>
-                            <option value="Bancário">Bancário</option>
-                            <option value="Bibliotecário">Bibliotecário</option>
-                            <option value="Biólogo">Biólogo</option>
-                            <option value="Cabeleireiro">Cabeleireiro</option>
-                            <option value="Cantor">Cantor</option>
-                            <option value="Contador">Contador</option>
-                            <option value="Cozinheiro">Cozinheiro</option>
-                            <option value="Designer Gráfico">Designer Gráfico</option>
-                            <option value="Desenvolvedor">Desenvolvedor</option>
-                            <option value="Dentista">Dentista</option>
-                            <option value="Economista">Economista</option>
-                            <option value="Eletricista">Eletricista</option>
-                            <option value="Enfermeiro">Enfermeiro</option>
-                            <option value="Engenheiro Civil">Engenheiro Civil</option>
-                            <option value="Engenheiro Mecânico">Engenheiro Mecânico</option>
-                            <option value="Empresário">Empresário</option>
-                            <option value="Farmacêutico">Farmacêutico</option>
-                            <option value="Fisioterapeuta">Fisioterapeuta</option>
-                            <option value="Fotógrafo">Fotógrafo</option>
-                            <option value="Funcionário Público">Funcionário Público</option>
-                            <option value="Garçom">Garçom</option>
-                            <option value="Jornalista">Jornalista</option>
-                            <option value="Marceneiro">Marceneiro</option>
-                            <option value="Médico">Médico</option>
-                            <option value="Motorista">Motorista</option>
-                            <option value="Nutricionista">Nutricionista</option>
-                            <option value="Pedreiro">Pedreiro</option>
-                            <option value="Professor">Professor</option>
-                            <option value="Recepcionista">Recepcionista</option>
-                            <option value="Secretário">Secretário</option>
-                            <option value="Segurança">Segurança</option>
-                            <option value="Soldador">Soldador</option>
-                            <option value="Técnico em Informática">Técnico em Informática</option>
-                            <option value="Vendedor">Vendedor</option>
-                            <option value="Veterinário">Veterinário</option>
-                            <option value="Outro">Outro</option>
+                        <select id="profissao" name="profissao" data-placeholder="Escolha..." autocomplete="off">
+                            <option value="">Escolha...</option>
+                            @foreach ($profissoes as $profissao)
+                                <option value="{{ $profissao }}" {{ old('profissao') == $profissao ? 'selected' : '' }}>
+                                    {{ $profissao }}
+                                </option>
+                            @endforeach
                         </select>
                     </div>
                 </div>
@@ -175,4 +131,24 @@
 
 @section('scripts')
     <script src="{{ asset('assets/js/components/form-inputmask.js') }}"></script>
+    <script>
+        
+
+        new TomSelect("#estado_civil", {
+            create: false,
+            sortField: {
+                field: "text",
+                direction: "asc"
+            }
+        });
+        new TomSelect("#profissao", {
+            create: false,
+            sortField: {
+                field: "text",
+                direction: "asc"
+            }
+        });
+
+
+    </script>
 @endsection

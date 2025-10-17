@@ -15,35 +15,50 @@ class PessoaFisicaController extends Controller
      */
     public function index()
     {
-        $profissoes = config('selects.profissoes');
-        $estados_civis = config('selects.estados_civis');
-
-        return view('pessoas-fisicas.index', compact('profissoes', 'estados_civis'));
+        return view('pessoas-fisicas.index');
     }
 
     public function getPessoas(Request $request)
     {
-        $limit = $request->input('limit', 20);
-        $page  = $request->input('page', 1);
-        $search = $request->input('search');
+        $limit = (int) $request->input('limit', 12);
+        $limit = max(1, min($limit, 100));
 
-        $query = PessoaFisica::query()->orderByDesc('id');
+        $page = (int) $request->input('page', 1);
+        $page = max(1, $page);
 
-        if ($search) {
+        $search = trim((string) $request->input('search', ''));
+
+        $query = PessoaFisica::query();
+
+        if ($search !== '') {
             $query->where(function($q) use ($search) {
-                $q->where('nome', 'like', "%{$search}%")
-                ->orWhere('cpf', 'like', "%{$search}%")
-                ->orWhere('rg', 'like', "%{$search}%")
-                ->orWhere('email', 'like', "%{$search}%")
-                ->orWhere('telefone', 'like', "%{$search}%");
+                $like = '%'.$search.'%';
+                $q->where('nome', 'like', $like)
+                ->orWhere('cpf', 'like', $like)
+                ->orWhere('rg', 'like', $like)
+                ->orWhere('email', 'like', $like)
+                ->orWhere('telefone', 'like', $like);
             });
         }
+
+        // Ordenação opcional vinda do front
+        $allowedSorts = ['id','nome','cpf','rg','email','telefone'];
+        $sort = $request->input('sort', 'id');
+        $order = strtolower($request->input('order', 'desc')) === 'asc' ? 'asc' : 'desc';
+
+        if (!in_array($sort, $allowedSorts, true)) {
+            $sort = 'id';
+        }
+        $query->orderBy($sort, $order);
 
         $pessoas = $query->paginate($limit, ['*'], 'page', $page);
 
         return response()->json([
-            'data'  => $pessoas->items(),
-            'total' => $pessoas->total()
+            'data'          => $pessoas->items(),
+            'total'         => $pessoas->total(),
+            'current_page'  => $pessoas->currentPage(),
+            'last_page'     => $pessoas->lastPage(),
+            'per_page'      => $pessoas->perPage(),
         ]);
     }
 
@@ -53,7 +68,9 @@ class PessoaFisicaController extends Controller
     public function create()
     {
         $enderecos = Endereco::all();
-        return view('pessoas-fisicas.create', compact('enderecos'));
+        $profissoes = config('selects.profissoes');
+        $estados_civis = config('selects.estados_civis');
+        return view('pessoas-fisicas.create', compact('enderecos', 'profissoes', 'estados_civis'));
     }
 
     /**

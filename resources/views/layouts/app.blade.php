@@ -18,8 +18,11 @@
     <link href="{{ asset('assets/css/icons.min.css') }}" rel="stylesheet" type="text/css" />
     <!-- Notify js CSS -->
     <link href="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css" rel="stylesheet" />
+    <!-- Tom Select CSS -->
+    <link href="{{ asset('assets/vendor/tom-select/tom-select.css') }}" rel="stylesheet">
     <!-- Theme Config JS -->
     <script src="{{ asset('assets/js/config.js') }}"></script>
+
     @yield('styles')
 </head>
 <body>
@@ -46,7 +49,8 @@
     <script src="{{ asset('assets/js/vendor.min.js') }}"></script>
     <!-- Notify js -->
     <script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
-    <!-- Input Mask js -->
+    <!-- Tom Select js -->
+    <script src="{{ asset('assets/vendor/tom-select/tom-select.complete.min.js') }}"></script>
     <!-- App JS -->
     <script src="{{ asset('assets/js/app.js') }}"></script>
     <script>
