@@ -49,7 +49,7 @@
                 <div class="col-md-3">
                     <div class="mb-3">
                         <label for="profissao" class="form-label">Profissão</label>
-                        <select id="profissao" name="profissao" data-placeholder="Escolha..." autocomplete="off">
+                        <select id="profissao" class="form-select" name="profissao" data-placeholder="Escolha..." autocomplete="off">
                             <option value="">Escolha...</option>
                             @foreach ($profissoes as $profissao)
                                 <option value="{{ $profissao }}" {{ old('profissao') == $profissao ? 'selected' : '' }}>
@@ -136,6 +136,7 @@
 
         new TomSelect("#estado_civil", {
             create: false,
+            createOnBlur: false,
             sortField: {
                 field: "text",
                 direction: "asc"
@@ -143,6 +144,7 @@
         });
         new TomSelect("#profissao", {
             create: false,
+            createOnBlur: false,
             sortField: {
                 field: "text",
                 direction: "asc"
