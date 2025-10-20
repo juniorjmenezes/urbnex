@@ -14,7 +14,7 @@ return new class extends Migration
             // Campos principais
             $table->string('cep', 9)->nullable();
             $table->string('logradouro', 255)->nullable();
-            $table->string('numero', 5)->nullable();
+            $table->string('numero', 10)->nullable();
             $table->string('complemento', 255)->nullable();
             $table->string('bairro', 100)->nullable();
             $table->string('cidade', 100)->nullable();

@@ -40,17 +40,17 @@
         {
             id: 'nome',
             name: 'Nome',
-            formatter: (cell) => gridjs.html(`<span class="text-dark fw-semibold">${cell}</span>`)
+            formatter: (cell) => gridjs.html(`<span class="text-dark">${cell}</span>`)
         },
         {
             id: 'cpf',
             name: 'CPF',
-            formatter: (cell) => gridjs.html(`<span class="text-dark fw-medium">${cell ?? '-'}</span>`)
+            formatter: (cell) => gridjs.html(`<span class="text-dark">${cell ?? '-'}</span>`)
         },
         {
             id: 'rg',
             name: 'RG',
-            formatter: (cell) => gridjs.html(`<span class="text-dark fw-medium">${cell ?? '-'}</span>`)
+            formatter: (cell) => gridjs.html(`<span class="text-dark">${cell ?? '-'}</span>`)
         },
         {
             id: 'email',

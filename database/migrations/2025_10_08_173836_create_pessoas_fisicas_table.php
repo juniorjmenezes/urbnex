@@ -12,9 +12,12 @@ return new class extends Migration
             $table->id();
 
             // Campos principais
+            $table->string('nacionalidade')->default('Brasileiro(a)');
             $table->string('nome');
-            $table->string('cpf', 14)->unique();
-            $table->string('rg', 14)->nullable()->unique();
+            $table->string('cpf_cin', 14)->unique();
+            $table->string('crg', 14)->nullable()->unique();
+            $table->string('crnm', 9)->nullable()->unique();
+            $table->string('passaporte', 9)->nullable()->unique();
             $table->string('estado_civil')->nullable();
             $table->string('profissao')->nullable();
             $table->string('email')->nullable();

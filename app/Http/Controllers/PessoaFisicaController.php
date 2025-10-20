@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Validation\Rule;
 
+// Models
 use App\Models\PessoaFisica;
 use App\Models\Endereco;
 
@@ -67,10 +70,12 @@ class PessoaFisicaController extends Controller
      */
     public function create()
     {
-        $enderecos = Endereco::all();
+        $nacionalidades = config('selects.nacionalidades');
         $profissoes = config('selects.profissoes');
         $estados_civis = config('selects.estados_civis');
-        return view('pessoas-fisicas.create', compact('enderecos', 'profissoes', 'estados_civis'));
+        $enderecos = Endereco::all();
+
+        return view('pessoas-fisicas.create', compact('nacionalidades', 'profissoes', 'estados_civis', 'enderecos'));
     }
 
     /**
@@ -78,30 +83,29 @@ class PessoaFisicaController extends Controller
      */
     public function store(Request $request)
     {
-        $validated = $request->validate([
-            // Pessoa Física
-            'nome'         => 'required|string|max:255',
-            'cpf'          => 'nullable|string|max:14|unique:pessoas_fisicas,cpf',
-            'rg'           => 'nullable|string|max:14|unique:pessoas_fisicas,rg',
-            'estado_civil' => 'nullable|string|max:255',
-            'profissao'    => 'nullable|string|max:255',
-            'email'        => 'nullable|email|max:255',
-            'telefone'     => 'nullable|string|max:15',
-
-            // Endereço
-            'logradouro'  => 'nullable|string|max:255',
-            'numero'      => 'nullable|string|max:5',
-            'bairro'      => 'nullable|string|max:255',
-            'cidade'      => 'nullable|string|max:255',
-            'estado'      => 'nullable|string|max:2',
-            'cep'         => 'nullable|string|max:9',
-            'complemento' => 'nullable|string|max:255',
-        ]);
-
         try {
+            $validated = $request->validate([
+                // Pessoa Física
+                'nome'         => 'required|string|max:255',
+                'cpf'          => 'nullable|string|max:14|unique:pessoas_fisicas,cpf',
+                'rg'           => 'nullable|string|max:14|unique:pessoas_fisicas,rg',
+                'estado_civil' => 'nullable|string|max:255',
+                'profissao'    => 'nullable|string|max:255',
+                'email'        => 'nullable|email|max:255',
+                'telefone'     => 'nullable|string|max:15',
+
+                // Endereço
+                'logradouro'  => 'nullable|string|max:255',
+                'numero'      => 'nullable|string|max:10',
+                'bairro'      => 'nullable|string|max:255',
+                'cidade'      => 'nullable|string|max:255',
+                'estado'      => 'nullable|string|max:2',
+                'cep'         => 'nullable|string|max:9',
+                'complemento' => 'nullable|string|max:255',
+            ]);
+
             DB::beginTransaction();
 
-            // Cria o endereço (se houver dados)
             $endereco = Endereco::create([
                 'logradouro'  => $validated['logradouro'] ?? null,
                 'numero'      => $validated['numero'] ?? null,
@@ -112,8 +116,7 @@ class PessoaFisicaController extends Controller
                 'complemento' => $validated['complemento'] ?? null,
             ]);
 
-            // Cria a Pessoa Física vinculando o Endereço
-            $pessoa = PessoaFisica::create([
+            PessoaFisica::create([
                 'nome'         => $validated['nome'],
                 'cpf'          => $validated['cpf'] ?? null,
                 'rg'           => $validated['rg'] ?? null,
@@ -126,21 +129,28 @@ class PessoaFisicaController extends Controller
 
             DB::commit();
 
-            // Retorna o registro criado em JSON
             return response()->json([
                 'success' => true,
-                'data' => $pessoa->load('endereco') // opcional, carrega dados do endereço
-            ], 200);
+                'message' => 'Pessoa Física criada com sucesso!'
+            ], 201);
+
+        } catch (\Illuminate\Validation\ValidationException $e) {
+            // Retorna erros de validação em formato JSON
+            return response()->json([
+                'success' => false,
+                'errors' => $e->errors()
+            ], 422);
 
         } catch (\Throwable $e) {
             DB::rollBack();
+            Log::error('Erro ao criar Pessoa Física', ['exception' => $e]);
+
             return response()->json([
                 'success' => false,
-                'message' => 'Erro ao criar a Pessoa Física: ' . $e->getMessage()
+                'message' => 'Ocorreu um erro inesperado. Tente novamente mais tarde.'
             ], 500);
         }
     }
-
 
     /**
      * Exibir formulário de edição

@@ -23,6 +23,10 @@
     <!-- Theme Config JS -->
     <script src="{{ asset('assets/js/config.js') }}"></script>
 
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=Titillium+Web:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700&display=swap" rel="stylesheet">
+
     @yield('styles')
 </head>
 <body>
@@ -54,13 +58,62 @@
     <!-- App JS -->
     <script src="{{ asset('assets/js/app.js') }}"></script>
     <script>
-        // Notyf instance
+        // Instância global do Notyf
         const notyf = new Notyf({
             duration: 5000,
             position: { x: 'right', y: 'top' },
-            dismissible: true
+            dismissible: false,
+            types: [
+                {
+                    type: 'warning',
+                    background: '#f59e0b',
+                    icon: {
+                        className: 'ri-error-warning-line',
+                        tagName: 'i',
+                        text: 'warning'
+                    }
+                },
+                {
+                    type: 'error',
+                    background: '#ef4444',
+                    icon: {
+                        className: 'ri-close-circle-line',
+                        tagName: 'i',
+                        text: 'error'
+                    }
+                },
+                {
+                    type: 'success',
+                    background: '#22c55e',
+                    icon: {
+                        className: 'ri-check-line',
+                        tagName: 'i',
+                        text: 'check_circle'
+                    }
+                }
+            ]
         });
+
+        // Mensagens de sessão (Laravel)
+        @if (session('success'))
+            notyf.success("{{ session('success') }}");
+        @endif
+
+        @if (session('warning'))
+            notyf.open({ type: 'warning', message: "{{ session('warning') }}" });
+        @endif
+
+        @if (session('error'))
+            notyf.error("{{ session('error') }}");
+        @endif
+
+        @if ($errors->any())
+            @foreach ($errors->all() as $error)
+                notyf.error("{{ $error }}");
+            @endforeach
+        @endif
     </script>
+
     @yield('scripts')
 </body>
 </html>

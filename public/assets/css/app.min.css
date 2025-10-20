@@ -1,5 +1,5 @@
 @charset "UTF-8";
-@import url(https://fonts.googleapis.com/css2?family=Mozilla+Headline:wght@200..700&family=Mozilla+Text:wght@200..700&display=swap);
+@import url(https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap);
 :root {
   --ct-logo-lg-height: 22px;
   --ct-logo-sm-height: 28px;
@@ -152,8 +152,7 @@
   --ct-dark-border-subtle: #a1a9b1;
   --ct-white-rgb: 255, 255, 255;
   --ct-black-rgb: 0, 0, 0;
-  --ct-font-sans-serif: "Mozilla Headline", serif;
-  --ct-font-alternate: "Mozilla Text", serif;
+  --ct-font-sans-serif: "Outfit", serif;
   --ct-font-monospace: SFMono-Regular, Menlo, Monaco, Consolas,
     "Liberation Mono", "Courier New", monospace;
   --ct-gradient: linear-gradient(
@@ -17198,7 +17197,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: "Mozilla Headline", serif;
+  font-family: "Outfit", serif;
 }
 .border-dashed {
   --ct-border-style: dashed;
@@ -21025,6 +21024,3 @@ div:where(.swal2-icon).swal2-success
   background-color: var(--ct-secondary-bg);
 }
 /*# sourceMappingURL=app.min.css.map */
-.text-alternate {
-  font-family: var(--ct-font-alternate);
-}
