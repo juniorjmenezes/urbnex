@@ -70,12 +70,14 @@ class PessoaFisicaController extends Controller
      */
     public function create()
     {
-        $nacionalidades = config('selects.nacionalidades');
-        $profissoes = config('selects.profissoes');
-        $estados_civis = config('selects.estados_civis');
+        $paisesOrigem = config('selects.paises_origem');
+        $profissoesMasculinas = config('selects.profissoes_masculinas');
+        $profissoesFemininas = config('selects.profissoes_femininas');
+        $estadosCivisMasculinos = config('selects.estados_civis_masculinos');
+        $estadosCivisFemininos = config('selects.estados_civis_femininos');
         $enderecos = Endereco::all();
 
-        return view('pessoas-fisicas.create', compact('nacionalidades', 'profissoes', 'estados_civis', 'enderecos'));
+        return view('pessoas-fisicas.create', compact('paisesOrigem', 'profissoesMasculinas', 'profissoesFemininas', 'estadosCivisMasculinos', 'estadosCivisFemininos', 'enderecos'));
     }
 
     /**
@@ -87,44 +89,52 @@ class PessoaFisicaController extends Controller
             $validated = $request->validate([
                 // Pessoa Física
                 'nome'         => 'required|string|max:255',
-                'cpf'          => 'nullable|string|max:14|unique:pessoas_fisicas,cpf',
+                'genero'       => ['required', Rule::in(['masculino', 'feminino'])],
+                'cpf'          => 'required|string|max:14|unique:pessoas_fisicas,cpf',
                 'rg'           => 'nullable|string|max:14|unique:pessoas_fisicas,rg',
-                'estado_civil' => 'nullable|string|max:255',
-                'profissao'    => 'nullable|string|max:255',
+                'crnm'         => 'nullable|string|max:14|unique:pessoas_fisicas,crnm',
+                'cnh'          => 'nullable|string|max:14|unique:pessoas_fisicas,cnh',
+                'passaporte'   => 'nullable|string|max:14|unique:pessoas_fisicas,passaporte',
+                'estado_civil' => 'required|string|max:255',
+                'profissao'    => 'required|string|max:255',
                 'email'        => 'nullable|email|max:255',
                 'telefone'     => 'nullable|string|max:15',
 
                 // Endereço
-                'logradouro'  => 'nullable|string|max:255',
-                'numero'      => 'nullable|string|max:10',
-                'bairro'      => 'nullable|string|max:255',
-                'cidade'      => 'nullable|string|max:255',
-                'estado'      => 'nullable|string|max:2',
-                'cep'         => 'nullable|string|max:9',
+                'cep'         => 'required|string|max:9',
+                'logradouro'  => 'required|string|max:255',
+                'numero'      => 'required|string|max:10',
                 'complemento' => 'nullable|string|max:255',
+                'bairro'      => 'required|string|max:255',
+                'cidade'      => 'required|string|max:255',
+                'estado'      => 'required|string|max:2'
             ]);
 
             DB::beginTransaction();
 
             $endereco = Endereco::create([
-                'logradouro'  => $validated['logradouro'] ?? null,
-                'numero'      => $validated['numero'] ?? null,
-                'bairro'      => $validated['bairro'] ?? null,
-                'cidade'      => $validated['cidade'] ?? null,
-                'estado'      => $validated['estado'] ?? null,
-                'cep'         => $validated['cep'] ?? null,
+                'cep'         => $validated['cep'],
+                'logradouro'  => $validated['logradouro'],
+                'numero'      => $validated['numero'],
                 'complemento' => $validated['complemento'] ?? null,
+                'bairro'      => $validated['bairro'],
+                'cidade'      => $validated['cidade'],
+                'estado'      => $validated['estado'],           
             ]);
+
+            
 
             PessoaFisica::create([
                 'nome'         => $validated['nome'],
-                'cpf'          => $validated['cpf'] ?? null,
+                'cpf'          => $validated['cpf'],
                 'rg'           => $validated['rg'] ?? null,
-                'estado_civil' => $validated['estado_civil'] ?? null,
-                'profissao'    => $validated['profissao'] ?? null,
+                'crnm'         => $validated['crnm'] ?? null,
+                'passaporte'   => $validated['passaporte'] ?? null,
+                'estado_civil' => $validated['estado_civil'],
+                'profissao'    => $validated['profissao'],
                 'email'        => $validated['email'] ?? null,
                 'telefone'     => $validated['telefone'] ?? null,
-                'endereco_id'  => $endereco->id ?? null,
+                'endereco_id'  => $endereco->id,
             ]);
 
             DB::commit();

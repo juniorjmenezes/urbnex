@@ -17,32 +17,43 @@
         <form action="{{ route('pessoasFisicas.store') }}" method="POST" id="formPessoaFisica">
             @csrf
             <div class="row">
-                <!-- Dados de Origem -->
-                <div class="col-lg-3">
-                    <label for="nacionalidade" class="form-label">Nacionalidade</label>
-                    <select id="nacionalidade" name="nacionalidade" data-placeholder="Escolha...">
-                        <option value="">Escolha...</option>
-                            @foreach ($nacionalidades as $nacionalidade)
-                                <option value="{{ $nacionalidade['value'] }}" data-flag="{{ $nacionalidade['flag'] }}" {{ old('nacionalidade') == $nacionalidade['value'] ? 'selected' : '' }}>
-                                    {{ $nacionalidade['text'] }}
-                                </option>
-                            @endforeach
-                    </select>
-                </div>
-                <div class="col-md-3">
-                    <div class="mb-3">
-                        <label for="passaporte" class="form-label">Passaporte</label>
-                        <input type="text" id="passaporte" class="form-control" name="passaporte" value="{{ old('passaporte') }}">
-                    </div>
-                </div>
-            </div>
-            <div class="row">
                 <!-- Dados pessoais -->
                 <div class="col-md-6">
                     <div class="mb-3">
                         <label for="nome" class="form-label">Nome Completo</label>
                         <input type="text" id="nome" class="form-control" name="nome" value="{{ old('nome') }}">
                     </div>
+                </div>
+                
+                <div class="col-md-3">
+                    <div class="mb-3">
+                        <label for="genero" class="form-label">Gênero</label>
+                        <select id="genero" name="genero" data-placeholder="Escolha...">
+                        <option value="">Escolha...</option>
+                            <option value="Masculino" {{ old('genero') == 'Masculino' ? 'selected' : '' }}>
+                                Masculino
+                            </option>
+                            <option value="Feminino" {{ old('genero') == 'Feminino' ? 'selected' : '' }}>
+                                Feminino
+                            </option>
+                    </select>
+                    </div>
+                </div>
+
+                <div class="col-lg-3">
+                    <label for="pais_origem" class="form-label">País de Origem</label>
+                    <select id="pais_origem" name="pais_origem" data-placeholder="Escolha...">
+                        <option value="">Escolha...</option>
+                        @foreach ($paisesOrigem as $paisOrigem)
+                            <option 
+                                value="{{ $paisOrigem['value'] }}" 
+                                data-flag="{{ $paisOrigem['flag'] }}" 
+                                {{ (old('pais_origem', 'Brasil') == $paisOrigem['value']) ? 'selected' : '' }}
+                            >
+                                {{ $paisOrigem['text'] }}
+                            </option>
+                        @endforeach
+                    </select>
                 </div>
 
                 <div class="col-md-3">
@@ -54,8 +65,29 @@
 
                 <div class="col-md-3">
                     <div class="mb-3">
-                        <label for="rg" class="form-label">RG/CNRM</label>
+                        <label for="rg" class="form-label">RG</label>
                         <input type="text" id="rg" class="form-control" name="rg" value="{{ old('rg') }}">
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="mb-3">
+                        <label for="crnm" class="form-label">RNE/CRNM</label>
+                        <input type="text" id="crnm" class="form-control" name="crnm" value="{{ old('crnm') }}">
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="mb-3">
+                        <label for="cnh" class="form-label">CNH</label>
+                        <input type="text" id="cnh" class="form-control" name="cnh" value="{{ old('cnh') }}">
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="mb-3">
+                        <label for="passaporte" class="form-label">Passaporte</label>
+                        <input type="text" id="passaporte" class="form-control" name="passaporte" value="{{ old('passaporte') }}">
                     </div>
                 </div>
 
@@ -64,11 +96,7 @@
                         <label for="estado_civil" class="form-label">Estado Civil</label>
                         <select id="estado_civil" name="estado_civil" data-placeholder="Escolha..." autocomplete="off">
                             <option value="">Escolha...</option>
-                            @foreach ($estados_civis as $estado_civil)
-                                <option value="{{ $estado_civil }}" {{ old('estado_civil') == $estado_civil ? 'selected' : '' }}>
-                                    {{ $estado_civil }}
-                                </option>
-                            @endforeach
+                            <!-- Opções serão carregadas via JS -->
                         </select>
                     </div>
                 </div>
@@ -78,11 +106,7 @@
                         <label for="profissao" class="form-label">Profissão</label>
                         <select id="profissao" name="profissao" data-placeholder="Escolha..." autocomplete="off">
                             <option value="">Escolha...</option>
-                            @foreach ($profissoes as $profissao)
-                                <option value="{{ $profissao }}" {{ old('profissao') == $profissao ? 'selected' : '' }}>
-                                    {{ $profissao }}
-                                </option>
-                            @endforeach
+                            <!-- Opções serão carregadas via JS -->
                         </select>
                     </div>
                 </div>
@@ -161,49 +185,21 @@
 @endsection
 
 @section('scripts')
+<!-- InputMask -->
 <script src="{{ asset('assets/js/components/form-inputmask.js') }}"></script>
-<script src="{{ asset('assets/js/helpers/tom-select-helper.js') }}"></script>
+<!-- JQuery Validation -->
 <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/additional-methods.min.js"></script>
+<!-- Helpers -->
+<script src="{{ asset('assets/js/helpers/tom-select-helper.js') }}"></script>
 <script src="{{ asset('assets/js/helpers/ajax-form-helper.js') }}"></script>
 
+<!-- Page JS -->
 <script>
-document.addEventListener("DOMContentLoaded", function () {
-    // Inicializa TomSelect
-    initTomSelect(["#estado_civil", "#profissao"]);
-
-    new TomSelect("#nacionalidade", {
-        render: {
-            option: function(data, escape) {
-                return `<div>
-                    <span class="fi fi-${escape(data.flag)} me-2"></span> ${escape(data.text)}
-                </div>`;
-            },
-            item: function(data, escape) {
-                return `<div>
-                    <span class="fi fi-${escape(data.flag)} me-1"></span> ${escape(data.text)}
-                </div>`;
-            }
-        }
-    });
-
-   setupAjaxForm("#formPessoaFisica", {
-        rules: {
-            nome:         { required: true, maxlength: 255 },
-            cpf:          { required: true, cpfBR: true },
-            rg:           { maxlength: 14 },
-            estado_civil: { maxlength: 255 },
-            profissao:    { maxlength: 255 },
-            email:        { email: true, maxlength: 255 },
-            telefone:     { required: true, maxlength: 15 }
-        },
-        messages: {
-            nome:     "Informe o nome completo.",
-            cpf:      "Informe um CPF válido.",
-            telefone: "Informe o telefone.",
-            email:    "Informe um e-mail válido."
-        }
-    });
-});
+    const ESTADOS_CIVIS_MASCULINOS = @json($estadosCivisMasculinos);
+    const ESTADOS_CIVIS_FEMININOS  = @json($estadosCivisFemininos);
+    const PROFISSOES_MASCULINAS    = @json($profissoesMasculinas);
+    const PROFISSOES_FEMININAS     = @json($profissoesFemininas);
 </script>
+<script src="{{ asset('assets/js/pages/pessoa-fisica-create.js') }}"></script>
 @endsection
