@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Validation\ValidationException;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Validation\Rule;
+use Throwable;
 
 // Models
 use App\Models\PessoaFisica;
@@ -37,7 +39,7 @@ class PessoaFisicaController extends Controller
             $query->where(function($q) use ($search) {
                 $like = '%'.$search.'%';
                 $q->where('nome', 'like', $like)
-                ->orWhere('cpf', 'like', $like)
+                ->orWhere('cpf_cin', 'like', $like)
                 ->orWhere('rg', 'like', $like)
                 ->orWhere('email', 'like', $like)
                 ->orWhere('telefone', 'like', $like);
@@ -45,7 +47,7 @@ class PessoaFisicaController extends Controller
         }
 
         // Ordenação opcional vinda do front
-        $allowedSorts = ['id','nome','cpf','rg','email','telefone'];
+        $allowedSorts = ['id','nome','cpf_cin','rg','email','telefone'];
         $sort = $request->input('sort', 'id');
         $order = strtolower($request->input('order', 'desc')) === 'asc' ? 'asc' : 'desc';
 
@@ -85,33 +87,36 @@ class PessoaFisicaController extends Controller
      */
     public function store(Request $request)
     {
+        // Validação
+        $validated = $request->validate([
+            // Pessoa Física
+            'nome'         => 'required|string|max:255',
+            'genero'       => ['required', Rule::in(['m', 'f'])],
+            'pais_origem'  => 'required|string',
+            'cpf_cin'      => 'required|string|max:14|unique:pessoas_fisicas,cpf_cin',
+            'rg'           => 'nullable|string|max:14|unique:pessoas_fisicas,rg',
+            'crnm'         => 'nullable|string|max:14|unique:pessoas_fisicas,crnm',
+            'cnh'          => 'nullable|string|max:14|unique:pessoas_fisicas,cnh',
+            'passaporte'   => 'nullable|string|max:14|unique:pessoas_fisicas,passaporte',
+            'estado_civil' => 'required|string|max:255',
+            'profissao'    => 'required|string|max:255',
+            'email'        => 'nullable|email|max:255',
+            'telefone'     => 'nullable|string|max:15',
+
+            // Endereço
+            'cep'         => 'required|string|max:9',
+            'logradouro'  => 'required|string|max:255',
+            'numero'      => 'required|string|max:10',
+            'complemento' => 'nullable|string|max:255',
+            'bairro'      => 'required|string|max:255',
+            'cidade'      => 'required|string|max:255',
+            'estado'      => 'required|string|max:2'
+        ]);
+
+        DB::beginTransaction();
+
         try {
-            $validated = $request->validate([
-                // Pessoa Física
-                'nome'         => 'required|string|max:255',
-                'genero'       => ['required', Rule::in(['masculino', 'feminino'])],
-                'cpf'          => 'required|string|max:14|unique:pessoas_fisicas,cpf',
-                'rg'           => 'nullable|string|max:14|unique:pessoas_fisicas,rg',
-                'crnm'         => 'nullable|string|max:14|unique:pessoas_fisicas,crnm',
-                'cnh'          => 'nullable|string|max:14|unique:pessoas_fisicas,cnh',
-                'passaporte'   => 'nullable|string|max:14|unique:pessoas_fisicas,passaporte',
-                'estado_civil' => 'required|string|max:255',
-                'profissao'    => 'required|string|max:255',
-                'email'        => 'nullable|email|max:255',
-                'telefone'     => 'nullable|string|max:15',
-
-                // Endereço
-                'cep'         => 'required|string|max:9',
-                'logradouro'  => 'required|string|max:255',
-                'numero'      => 'required|string|max:10',
-                'complemento' => 'nullable|string|max:255',
-                'bairro'      => 'required|string|max:255',
-                'cidade'      => 'required|string|max:255',
-                'estado'      => 'required|string|max:2'
-            ]);
-
-            DB::beginTransaction();
-
+            // Criação do endereço
             $endereco = Endereco::create([
                 'cep'         => $validated['cep'],
                 'logradouro'  => $validated['logradouro'],
@@ -119,48 +124,56 @@ class PessoaFisicaController extends Controller
                 'complemento' => $validated['complemento'] ?? null,
                 'bairro'      => $validated['bairro'],
                 'cidade'      => $validated['cidade'],
-                'estado'      => $validated['estado'],           
+                'estado'      => $validated['estado'],
             ]);
 
-            
+            // Buscar país e nacionalidade
+            $paisSelecionado = collect(config('selects.paises_origem'))
+                ->first(fn($pais) => strcasecmp($pais['value'], trim($validated['pais_origem'])) === 0);
 
+            $nacionalidade = $paisSelecionado['nacionalidade'][$validated['genero']] ?? 'N/A';
+
+            // Criação da pessoa física
             PessoaFisica::create([
-                'nome'         => $validated['nome'],
-                'cpf'          => $validated['cpf'],
-                'rg'           => $validated['rg'] ?? null,
-                'crnm'         => $validated['crnm'] ?? null,
-                'passaporte'   => $validated['passaporte'] ?? null,
-                'estado_civil' => $validated['estado_civil'],
-                'profissao'    => $validated['profissao'],
-                'email'        => $validated['email'] ?? null,
-                'telefone'     => $validated['telefone'] ?? null,
-                'endereco_id'  => $endereco->id,
+                'nome'          => $validated['nome'],
+                'genero'        => $validated['genero'],
+                'pais_origem'   => $validated['pais_origem'],
+                'nacionalidade' => $nacionalidade,
+                'cpf_cin'       => $validated['cpf_cin'],
+                'rg'            => $validated['rg'] ?? null,
+                'crnm'          => $validated['crnm'] ?? null,
+                'cnh'           => $validated['cnh'] ?? null,
+                'passaporte'    => $validated['passaporte'] ?? null,
+                'estado_civil'  => $validated['estado_civil'],
+                'profissao'     => $validated['profissao'],
+                'email'         => $validated['email'] ?? null,
+                'telefone'      => $validated['telefone'] ?? null,
+                'endereco_id'   => $endereco->id,
             ]);
 
             DB::commit();
 
-            return response()->json([
-                'success' => true,
-                'message' => 'Pessoa Física criada com sucesso!'
-            ], 201);
-
-        } catch (\Illuminate\Validation\ValidationException $e) {
-            // Retorna erros de validação em formato JSON
-            return response()->json([
-                'success' => false,
-                'errors' => $e->errors()
-            ], 422);
+            return redirect()->route('pessoasFisicas.index')
+                ->with('success', 'Pessoa Física criada com sucesso!');
 
         } catch (\Throwable $e) {
             DB::rollBack();
+
+            // Log do erro
             Log::error('Erro ao criar Pessoa Física', ['exception' => $e]);
 
-            return response()->json([
-                'success' => false,
-                'message' => 'Ocorreu um erro inesperado. Tente novamente mais tarde.'
-            ], 500);
+            // Em desenvolvimento, mostra erro detalhado
+            if (app()->environment('local')) {
+                throw $e;
+            }
+
+            // Em produção, mensagem genérica
+            return redirect()->back()
+                ->with('error', 'Ocorreu um erro inesperado. Tente novamente mais tarde.')
+                ->withInput();
         }
     }
+
 
     /**
      * Exibir formulário de edição
@@ -178,7 +191,7 @@ class PessoaFisicaController extends Controller
     {
         $validated = $request->validate([
             'nome'        => 'required|string|max:255',
-            'cpf'         => "required|string|max:20|unique:pessoas_fisicas,cpf,{$pessoaFisica->id}",
+            'cpf_cin'         => "required|string|max:20|unique:pessoas_fisicas,cpf_cin,{$pessoaFisica->id}",
             'rg'          => "required|string|max:20|unique:pessoas_fisicas,rg,{$pessoaFisica->id}",
             'email'       => 'nullable|email|max:255',
             'telefone_1'  => 'nullable|string|max:20',

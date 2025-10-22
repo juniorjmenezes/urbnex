@@ -5,713 +5,1070 @@ return [
             'value'         => "Brasil",
             'flag'          => "br",
             'text'          => "Brasil",
-            'nacionalidade' => ['m' => 'Brasileiro', 'f' => 'Brasileira']
+            'nacionalidade' => [
+                'm' => 'Brasileiro',
+                'f' => 'Brasileira'
+            ]
         ],
         [   
             'value'         => "Afeganistão",
             'flag'          => "af",
             'text'          => "Afeganistão",
-            'nacionalidade' => ['m' => 'Afegão', 'f' => 'Afegã']
+            'nacionalidade' => [
+                'm' => 'Afegão',
+                'f' => 'Afegã'
+            ]
         ],
         [ 
             'value'         => "Albânia",
             'flag'          => "al",
             'text'          => "Albânia",
-            'nacionalidade' => ['m' => 'Albanês', 'f' => 'Albanesa']
+            'nacionalidade' => [
+                'm' => 'Albanês',
+                'f' => 'Albanesa'
+            ]
         ],
         [ 
             'value' => "Argélia",
             'flag' => "dz",
             'text' => "Argélia",
-            'nacionalidade' => ['m' => 'Argelino', 'f' => 'Argelina']
+            'nacionalidade' => [
+                'm' => 'Argelino',
+                'f' => 'Argelina'
+            ]
         ],
         [ 
             'value'         => "Angola",
             'flag'          => "ao",
             'text'          => "Angola",
-            'nacionalidade' => ['m' => 'Angolano', 'f' => 'Angolana']
+            'nacionalidade' => [
+                'm' => 'Angolano',
+                'f' => 'Angolana'
+            ]
         ],
         [ 
             'value'         => "Argentina",
             'flag'          => "ar",
             'text'          => "Argentina",
-            'nacionalidade' => ['m' => 'Argentino', 'f' => 'Argentina']
+            'nacionalidade' => [
+                'm' => 'Argentino',
+                'f' => 'Argentina'
+            ]
         ],
         [
             'value' => "Armênia",
             'flag'  => "am",
             'text'  => "Armênia",
-            'nacionalidade' => ['m' => 'Armênio', 'f' => 'Armênia']
+            'nacionalidade' => [
+                'm' => 'Armênio',
+                'f' => 'Armênia'
+            ]
         ],
         [ 
             'value'         => "Austrália",
             'flag'          => "au",
             'text'          => "Austrália",
-            'nacionalidade' => ['m' => 'Australiano', 'f' => 'Australiana']
+            'nacionalidade' => [
+                'm' => 'Australiano',
+                'f' => 'Australiana'
+            ]
         ],
         [
             'value'         => "Áustria",
             'flag'          => "at",
             'text'          => "Áustria",
-            'nacionalidade' => ['m' => 'Austríaco', 'f' => 'Austríaca']
+            'nacionalidade' => [
+                'm' => 'Austríaco',
+                'f' => 'Austríaca'
+            ]
         ],
         [
             'value'         => "Azerbaijão",
             'flag'          => "az",
             'text'          => "Azerbaijão",
-            'nacionalidade' => ['m' => 'Azerbaijano', 'f' => 'Azerbaijana']
+            'nacionalidade' => [
+                'm' => 'Azerbaijano',
+                'f' => 'Azerbaijana'
+            ]
         ],
         [
             'value'         => "Bahamas",
             'flag'          => "bs",
             'text'          => "Bahamas",
-            'nacionalidade' => ['m' => 'Bahamense', 'f' => 'Bahamense']
+            'nacionalidade' => [
+                'm' => 'Bahamense',
+                'f' => 'Bahamense'
+            ]
         ],
         [
             'value'         => "Bahrein",
             'flag'          => "bh",
             'text'          => "Bahrein",
-            'nacionalidade' => ['m' => 'Bahraini', 'f' => 'Bahraini']
+            'nacionalidade' => [
+                'm' => 'Bahreinita',
+                'f' => 'Bahreinita'
+            ]
         ],
         [
             'value'         => "Bangladesh",
             'flag'          => "bd",
             'text'          => "Bangladesh",
-            'nacionalidade' => ['m' => 'Bangladense', 'f' => 'Bangladense']
+            'nacionalidade' => [
+                'm' => 'Bangladeshiano',
+                'f' => 'Bangladeshiana'
+            ]
         ],
         [
             'value'         => "Bélgica",
             'flag'          => "be",
             'text'          => "Bélgica",
-            'nacionalidade' => ['m' => 'Belga', 'f' => 'Belga']
+            'nacionalidade' => [
+                'm' => 'Belga',
+                'f' => 'Belga'
+            ]
         ],
         [
             'value'         => "Belize",
             'flag'          => "bz",
             'text'          => "Belize",
-            'nacionalidade' => ['m' => 'Belizenho', 'f' => 'Belizenha']
+            'nacionalidade' => [
+                'm' => 'Belizenho',
+                'f' => 'Belizenha'
+            ]
         ],
         [
             'value'         => "Benin",
             'flag'          => "bj",
             'text'          => "Benin",
-            'nacionalidade' => ['m' => 'Beninense', 'f' => 'Beninense']
+            'nacionalidade' => [
+                'm' => 'Beninense',
+                'f' => 'Beninense'
+            ]
         ],
         [
             'value'         => "Butão",
             'flag'          => "bt",
             'text'          => "Butão",
-            'nacionalidade' => ['m' => 'Butanês', 'f' => 'Butanesa']
+            'nacionalidade' => [
+                'm' => 'Butanês',
+                'f' => 'Butanesa'
+            ]
         ],
         [
             'value'         => "Bielorrússia",
             'flag'          => "by",
             'text'          => "Bielorrússia",
-            'nacionalidade' => ['m' => 'Bielorrusso', 'f' => 'Bielorrussa']
+            'nacionalidade' => [
+                'm' => 'Bielorrusso',
+                'f' => 'Bielorrussa'
+            ]
         ],
         [
             'value'         => "Bolívia",
             'flag'          => "bo",
             'text'          => "Bolívia",
-            'nacionalidade' => ['m' => 'Boliviano', 'f' => 'Boliviana']
+            'nacionalidade' => [
+                'm' => 'Boliviano',
+                'f' => 'Boliviana'
+            ]
         ],
         [
             'value'         => "Bósnia",
             'flag'          => "ba",
             'text'          => "Bósnia",
-            'nacionalidade' => ['m' => 'Bósnio', 'f' => 'Bósnia']
+            'nacionalidade' => [
+                'm' => 'Bósnio',
+                'f' => 'Bósnia'
+            ]
         ],
         [
             'value'         => "Botsuana",
             'flag'          => "bw",
             'text'          => "Botsuana",
-            'nacionalidade' => ['m' => 'Botsuanense', 'f' => 'Botsuanense']
+            'nacionalidade' => [
+                'm' => 'Botsuanense',
+                'f' => 'Botsuanense'
+            ]
         ],
         [
             'value'         => "Brunei",
             'flag'          => "bn",
             'text'          => "Brunei",
-            'nacionalidade' => ['m' => 'Bruneano', 'f' => 'Bruneana']
+            'nacionalidade' => [
+                'm' => 'Bruneano',
+                'f' => 'Bruneana'
+            ]
         ],
         [
             'value'         => "Bulgária",
             'flag'          => "bg",
             'text'          => "Bulgária",
-            'nacionalidade' => ['m' => 'Búlgaro', 'f' => 'Búlgara']
+            'nacionalidade' => [
+                'm' => 'Búlgaro',
+                'f' => 'Búlgara'
+            ]
         ],
         [
             'value'         => "Burquina Faso",
             'flag'          => "bf",
             'text'          => "Burquina Faso",
-            'nacionalidade' => ['m' => 'Burquinense', 'f' => 'Burquinense']
+            'nacionalidade' => [
+                'm' => 'Burquinense',
+                'f' => 'Burquinense'
+            ]
         ],
         [
             'value'         => "Burundi",
             'flag'          => "bi",
             'text'          => "Burundi",
-            'nacionalidade' => ['m' => 'Burundense', 'f' => 'Burundense']
+            'nacionalidade' => [
+                'm' => 'Burundiano',
+                'f' => 'Burundiana'
+            ]
         ],
         [
             'value'         => "Cabo Verde",
             'flag'          => "cv",
             'text'          => "Cabo Verde",
-            'nacionalidade' => ['m' => 'Cabo-verdiano', 'f' => 'Cabo-verdiana']
+            'nacionalidade' => [
+                'm' => 'Cabo-verdiano',
+                'f' => 'Cabo-verdiana'
+            ]
         ],
         [
             'value'         => "Camboja",
             'flag'          => "kh",
             'text'          => "Camboja",
-            'nacionalidade' => ['m' => 'Cambojano', 'f' => 'Cambojana']
+            'nacionalidade' => [
+                'm' => 'Cambojano',
+                'f' => 'Cambojana'
+            ]
         ],
         [
             'value'         => "Camarões",
             'flag'          => "cm",
             'text'          => "Camarões",
-            'nacionalidade' => ['m' => 'Camarones', 'f' => 'Camaronesa']
+            'nacionalidade' => [
+                'm' => 'Camaronês',
+                'f' => 'Camaronesa'
+            ]
         ],
         [
             'value'         => "Canadá",
             'flag'          => "ca",
             'text'          => "Canadá",
-            'nacionalidade' => ['m' => 'Canadense', 'f' => 'Canadense']
+            'nacionalidade' => [
+                'm' => 'Canadense',
+                'f' => 'Canadense'
+            ]
         ],
         [
             'value'         => "Catar",
             'flag'          => "qa",
             'text'          => "Catar",
-            'nacionalidade' => ['m' => 'Qatarense', 'f' => 'Qatarense']
+            'nacionalidade' => [    
+                'm' => 'Catariano',
+                'f' => 'Catariana'
+            ]
         ],
         [
             'value'         => "Chad",
             'flag'          => "td",
             'text'          => "Chad",
-            'nacionalidade' => ['m' => 'Chadiano', 'f' => 'Chadiana']
+            'nacionalidade' => [
+                'm' => 'Chadiano',
+                'f' => 'Chadiana'
+            ]
         ],
         [
             'value'         => "Chile",
             'flag'          => "cl",
             'text'          => "Chile",
-            'nacionalidade' => ['m' => 'Chileno', 'f' => 'Chilena']
+            'nacionalidade' => [
+                'm' => 'Chileno',
+                'f' => 'Chilena'
+            ]
         ],
         [
             'value'         => "China",
             'flag'          => "cn",
             'text'          => "China",
-            'nacionalidade' => ['m' => 'Chinês', 'f' => 'Chinesa']
+            'nacionalidade' => [
+                'm' => 'Chinês',
+                'f' => 'Chinesa'
+            ]
         ],
         [
             'value'         => "Chipre",
             'flag'          => "cy",
             'text'          => "Chipre",
-            'nacionalidade' => ['m' => 'Chipriota', 'f' => 'Chipriota']
+            'nacionalidade' => [
+                'm' => 'Cipriota',
+                'f' => 'Cipriota'
+            ]
         ],
         [
             'value'         => "Colômbia",
             'flag'          => "co",
             'text'          => "Colômbia",
-            'nacionalidade' => ['m' => 'Colombiano', 'f' => 'Colombiana']
+            'nacionalidade' => [
+                'm' => 'Colombiano',
+                'f' => 'Colombiana'
+            ]
         ],
         [
             'value'         => "Comores",
             'flag'          => "km",
             'text'          => "Comores",
-            'nacionalidade' => ['m' => 'Comorense', 'f' => 'Comorense']
+            'nacionalidade' => [
+                'm' => 'Comorense',
+                'f' => 'Comorense'
+            ]
         ],
         [
             'value'         => "Congo (RDC)",
             'flag'          => "cd",
             'text'          => "Congo (RDC)",
-            'nacionalidade' => ['m' => 'Congolês', 'f' => 'Congolesa']
+            'nacionalidade' => [
+                'm' => 'Congolês',
+                'f' => 'Congolesa'
+            ]
         ],
         [
             'value'         => "Congo",
             'flag'          => "cg",
             'text'          => "Congo",
-            'nacionalidade' => ['m' => 'Congolês', 'f' => 'Congolesa']
+            'nacionalidade' => [
+                'm' => 'Congolês',
+                'f' => 'Congolesa'
+            ]
         ],
         [ 
             'value'         => "Costa Rica",
             'flag'          => "cr",
             'text'          => "Costa Rica",
-            'nacionalidade' => ['m' => 'Costarriquenho', 'f' => 'Costarriquenha']
+            'nacionalidade' => [
+                'm' => 'Costarriquenho',
+                'f' => 'Costarriquenha'
+            ]
         ],
         [
             'value'         => "Croácia",
             'flag'          => "hr",
             'text'          => "Croácia",
-            'nacionalidade' => ['m' => 'Croata', 'f' => 'Croata']
+            'nacionalidade' => [
+                'm' => 'Croata',
+                'f' => 'Croata'
+            ]
         ],
         [
             'value'         => "Cuba",
             'flag'          => "cu",
             'text'          => "Cuba",
-            'nacionalidade' => ['m' => 'Cubano', 'f' => 'Cubana']
+            'nacionalidade' => [
+                'm' => 'Cubano',
+                'f' => 'Cubana'
+            ]
         ],
         [
             'value'         => "Dinamarca",
             'flag'          => "dk",
             'text'          => "Dinamarca",
-            'nacionalidade' => ['m' => 'Dinamarquês', 'f' => 'Dinamarquesa']
+            'nacionalidade' => [
+                'm' => 'Dinamarquês',
+                'f' => 'Dinamarquesa'
+            ]
         ],
         [
             'value'         => "Djibuti",
             'flag'          => "dj",
             'text'          => "Djibuti",
-            'nacionalidade' => ['m' => 'Djibutiano', 'f' => 'Djibutiana']
+            'nacionalidade' => [
+                'm' => 'Djibutiano',
+                'f' => 'Djibutiana'
+            ]
         ],
         [
             'value'         => "República Dominicana",
             'flag'          => "do",
             'text'          => "República Dominicana",
-            'nacionalidade' => ['m' => 'Dominicano', 'f' => 'Dominicana']
+            'nacionalidade' => [
+                'm' => 'Dominicano',
+                'f' => 'Dominicana'
+            ]
         ],
         [
             'value'         => "Equador",
             'flag'          => "ec",
             'text'          => "Equador",
-            'nacionalidade' => ['m' => 'Equatoriano', 'f' => 'Equatoriana']
+            'nacionalidade' => [
+                'm' => 'Equatoriano',
+                'f' => 'Equatoriana'
+            ]
         ],
         [
             'value'         => "Egito",
             'flag'          => "eg",
             'text'          => "Egito",
-            'nacionalidade' => ['m' => 'Egípcio', 'f' => 'Egípcia']
+            'nacionalidade' => [
+                'm' => 'Egípcio',
+                'f' => 'Egípcia'
+            ]
         ],
         [
             'value'         => "El Salvador",
             'flag'          => "sv",
             'text'          => "El Salvador",
-            'nacionalidade' => ['m' => 'Salvadorenho', 'f' => 'Salvadorenha']
+            'nacionalidade' => [
+                'm' => 'Salvadorenho',
+                'f' => 'Salvadorenha'
+            ]
         ],
         [
             'value'         => "Guiné Equatorial",
             'flag'          => "gq",
             'text'          => "Guiné Equatorial",
-            'nacionalidade' => ['m' => 'Equatoguineense', 'f' => 'Equatoguineense']
+            'nacionalidade' => [
+                'm' => 'Guineense',
+                'f' => 'Guineense'
+            ]
         ],
         [
             'value'         => "Eritreia",
             'flag'          => "er",
             'text'          => "Eritreia",
-            'nacionalidade' => ['m' => 'Eritreio', 'f' => 'Eritreia']
+            'nacionalidade' => [
+                'm' => 'Eritreu',
+                'f' => 'Eritreia'
+            ]
         ],
         [
             'value'         => "Estônia",
             'flag'          => "ee",
             'text'          => "Estônia",
-            'nacionalidade' => ['m' => 'Estoniano', 'f' => 'Estoniana']
+            'nacionalidade' => [
+                'm' => 'Estoniano',
+                'f' => 'Estoniana'
+            ]
         ],
         [
             'value'         => "Etiópia",
             'flag'          => "et",
             'text'          => "Etiópia",
-            'nacionalidade' => ['m' => 'Etíope', 'f' => 'Etíope']
+            'nacionalidade' => [
+                'm' => 'Etíope',
+                'f' => 'Etíope'
+            ]
         ],
         [
             'value'         => "Fiji",
             'flag'          => "fj",
             'text'          => "Fiji",
-            'nacionalidade' => ['m' => 'Fijiano', 'f' => 'Fijiana']
+            'nacionalidade' => [
+                'm' => 'Fijiano',
+                'f' => 'Fijiana'
+            ]
         ],
         [
             'value'         => "Finlândia",
             'flag'          => "fi",
             'text'          => "Finlândia",
-            'nacionalidade' => ['m' => 'Finlandês', 'f' => 'Finlandesa']
+            'nacionalidade' => [
+                'm' => 'Finlandês',
+                'f' => 'Finlandesa'
+            ]
         ],
         [
             'value'         => "França",
             'flag'          => "fr",
             'text'          => "França",
-            'nacionalidade' => ['m' => 'Francês', 'f' => 'Francesa']
+            'nacionalidade' => [
+                'm' => 'Francês',
+                'f' => 'Francesa'
+            ]
         ],
         [
             'value'         => "Gabão",
             'flag'          => "ga",
             'text'          => "Gabão",
-            'nacionalidade' => ['m' => 'Gabonense', 'f' => 'Gabonense']
+            'nacionalidade' => [
+                'm' => 'Gabonense',
+                'f' => 'Gabonense'
+            ]
         ],
         [
             'value'         => "Gâmbia",
             'flag'          => "gm",
             'text'          => "Gâmbia",
-            'nacionalidade' => ['m' => 'Gambiano', 'f' => 'Gambiana']
+            'nacionalidade' => [
+                'm' => 'Gambiano',
+                'f' => 'Gambiana'
+            ]
         ],
         [
             'value'         => "Geórgia",
             'flag'          => "ge",
             'text'          => "Geórgia",
-            'nacionalidade' => ['m' => 'Georgiano', 'f' => 'Georgiana']
+            'nacionalidade' => [    
+                'm' => 'Georgiano',
+                'f' => 'Georgiana'
+            ]
         ],
         [ 
             'value'         => "Alemanha",
             'flag'          => "de",
             'text'          => "Alemanha",
-            'nacionalidade' => ['m' => 'Alemão', 'f' => 'Alemã']
+            'nacionalidade' => [
+                'm' => 'Alemão',
+                'f' => 'Alemã'
+            ]
         ],
         [
             'value'         => "Gana",
             'flag'          => "gh",
             'text'          => "Gana",
-            'nacionalidade' => ['m' => 'Gano', 'f' => 'Gana']
+            'nacionalidade' => [
+                'm' => 'Ganês',
+                'f' => 'Ganesa'
+            ]
         ],
         [
             'value'         => "Grécia",
             'flag'          => "gr",
             'text'          => "Grécia",
-            'nacionalidade' => ['m' => 'Grego', 'f' => 'Grega']
+            'nacionalidade' => [
+                'm' => 'Grego',
+                'f' => 'Grega'
+            ]
         ],
         [
             'value'         => "Granada",
             'flag'          => "gd",
             'text'          => "Granada",
-            'nacionalidade' => ['m' => 'Granadino', 'f' => 'Granadina']
+            'nacionalidade' => [
+                'm' => 'Granadino',
+                'f' => 'Granadina'
+            ]
         ],
         [
             'value'         => "Guatemala",
             'flag'          => "gt",
             'text'          => "Guatemala",
-            'nacionalidade' => ['m' => 'Guatemalteco', 'f' => 'Guatemalteca']
+            'nacionalidade' => [
+                'm' => 'Guatemalteco',
+                'f' => 'Guatemalteca'
+            ]
         ],
         [
             'value'         => "Guiné",
             'flag'          => "gn",
             'text'          => "Guiné",
-            'nacionalidade' => ['m' => 'Guineense', 'f' => 'Guineense']
+            'nacionalidade' => [
+                'm' => 'Guineense',
+                'f' => 'Guineense'
+            ]
         ],
         [
             'value'         => "Guiné-Bissau",
             'flag'          => "gw",
             'text'          => "Guiné-Bissau",
-            'nacionalidade' => ['m' => 'Guineense', 'f' => 'Guineense']
+            'nacionalidade' => [
+                'm' => 'Guineense',
+                'f' => 'Guineense'
+            ]
         ],
         [
             'value'         => "Guiana",
             'flag'          => "gy",
             'text'          => "Guiana",
-            'nacionalidade' => ['m' => 'Guianense', 'f' => 'Guianense']
+            'nacionalidade' => [
+                'm' => 'Guianense',
+                'f' => 'Guianense'
+            ]
         ],
         [
             'value'         => "Haiti",
             'flag'          => "ht",
             'text'          => "Haiti",
-            'nacionalidade' => ['m' => 'Haitiano', 'f' => 'Haitiana']
+            'nacionalidade' => [
+                'm' => 'Haitiano',
+                'f' => 'Haitiana'
+            ]
         ],
         [
             'value'         => "Honduras",
             'flag'          => "hn",
             'text'          => "Honduras",
-            'nacionalidade' => ['m' => 'Hondurenho', 'f' => 'Hondurenha']
+            'nacionalidade' => [
+                'm' => 'Hondurenho',
+                'f' => 'Hondurenha'
+            ]
         ],
         [
             'value'         => "Hungria",
             'flag'          => "hu",
             'text'          => "Hungria",
-            'nacionalidade' => ['m' => 'Húngaro', 'f' => 'Húngara']
+            'nacionalidade' => [
+                'm' => 'Húngaro',
+                'f' => 'Húngara'
+            ]
         ],
         [
             'value'         => "Islândia",
             'flag'          => "is",
             'text'          => "Islândia",
-            'nacionalidade' => ['m' => 'Islandês', 'f' => 'Islandesa']
+            'nacionalidade' => [
+                'm' => 'Islandês',
+                'f' => 'Islandesa'
+            ]
         ],
         [
             'value'         => "Índia",
             'flag'          => "in",
             'text'          => "Índia",
-            'nacionalidade' => ['m' => 'Indiano', 'f' => 'Indiana']
+            'nacionalidade' => [
+                'm' => 'Indiano',
+                'f' => 'Indiana'
+            ]
         ],
         [
             'value'         => "Indonésia",
             'flag'          => "id",
             'text'          => "Indonésia",
-            'nacionalidade' => ['m' => 'Indonésio', 'f' => 'Indonésia']
+            'nacionalidade' => [
+                'm' => 'Indonésio',
+                'f' => 'Indonésia'
+            ]
         ],
         [
             'value'         => "Irã",
             'flag'          => "ir",
             'text'          => "Irã",
-            'nacionalidade' => ['m' => 'Iraniano', 'f' => 'Iraniana']
+            'nacionalidade' => [
+                'm' => 'Iraniano',
+                'f' => 'Iraniana'
+            ]
         ],
         [
             'value'         => "Iraque",
             'flag'          => "iq",
             'text'          => "Iraque",
-            'nacionalidade' => ['m' => 'Iraquiano', 'f' => 'Iraquiana']
+            'nacionalidade' => [
+                'm' => 'Iraquiano',
+                'f' => 'Iraquiana'
+            ]
         ],
         [ 
             'value'         => "Irlanda",
             'flag'          => "ie",
             'text'          => "Irlanda",
-            'nacionalidade' => ['m' => 'Irlandês', 'f' => 'Irlandesa']
+            'nacionalidade' => [
+                'm' => 'Irlandês',
+                'f' => 'Irlandesa'
+            ]
         ],
         [
             'value'         => "Israel",
             'flag'          => "il",
             'text'          => "Israel",
-            'nacionalidade' => ['m' => 'Israelense', 'f' => 'Israelense']
+            'nacionalidade' => [
+                'm' => 'Israelense',
+                'f' => 'Israelense'
+            ]
         ],
         [
             'value'         => "Itália",
             'flag'          => "it",
             'text'          => "Itália",
-            'nacionalidade' => ['m' => 'Italiano', 'f' => 'Italiana']
+            'nacionalidade' => [
+                'm' => 'Italiano',
+                'f' => 'Italiana'
+            ]
         ],
         [
             'value'         => "Jamaica",
             'flag'          => "jm",
             'text'          => "Jamaica",
-            'nacionalidade' => ['m' => 'Jamaicano', 'f' => 'Jamaicana']
+            'nacionalidade' => [
+                'm' => 'Jamaicano',
+                'f' => 'Jamaicana'
+            ]
         ],
         [
             'value'         => "Japão",
             'flag'          => "jp",
             'text'          => "Japão",
-            'nacionalidade' => ['m' => 'Japonês', 'f' => 'Japonesa']
+            'nacionalidade' => [
+                'm' => 'Japonês',
+                'f' => 'Japonesa'
+            ]
         ],
         [
             'value'         => "Jordânia",
             'flag'          => "jo",
             'text'          => "Jordânia",
-            'nacionalidade' => ['m' => 'Jordano', 'f' => 'Jordana']
+            'nacionalidade' => [
+                'm' => 'Jordano',
+                'f' => 'Jordana'
+            ]
         ],
         [
             'value'         => "Cazaquistão",
             'flag'          => "kz",
             'text'          => "Cazaquistão",
-            'nacionalidade' => ['m' => 'Cazaque', 'f' => 'Cazaque']
+            'nacionalidade' => [
+                'm' => 'Cazaque',
+                'f' => 'Cazaque'
+            ]
         ],
         [
             'value'         => "Quênia",
             'flag'          => "ke",
             'text'          => "Quênia",
-            'nacionalidade' => ['m' => 'Queniano', 'f' => 'Queniana']
+            'nacionalidade' => [
+                'm' => 'Queniano',
+                'f' => 'Queniana'
+            ]
         ],
         [
             'value'         => "Kiribati",
             'flag'          => "ki",
             'text'          => "Kiribati",
-            'nacionalidade' => ['m' => 'Kiribatiano', 'f' => 'Kiribatiana']
+            'nacionalidade' => [
+                'm' => 'Kiribatiano',
+                'f' => 'Kiribatiana'
+            ]
         ],
         [
             'value'         => "Kuwait",
             'flag'          => "kw",
             'text'          => "Kuwait",
-            'nacionalidade' => ['m' => 'Kuwaitiano', 'f' => 'Kuwaitiana']
+            'nacionalidade' => [
+                'm' => 'Kuwaitiano',
+                'f' => 'Kuwaitiana'
+            ]
         ],
         [
             'value'         => "Quirguistão",
             'flag'          => "kg",
             'text'          => "Quirguistão",
-            'nacionalidade' => ['m' => 'Quirguiz', 'f' => 'Quirguiza']
+            'nacionalidade' => [
+                'm' => 'Quirguiz',
+                'f' => 'Quirguiza'
+            ]
         ],
         [
             'value'         => "Laos",
             'flag'          => "la",
             'text'          => "Laos",
-            'nacionalidade' => ['m' => 'Laociano', 'f' => 'Laociana']
+            'nacionalidade' => [
+                'm' => 'Laociano',
+                'f' => 'Laociana'
+            ]
         ],
         [
             'value'         => "Letônia",
             'flag'          => "lv",
             'text'          => "Letônia",
-            'nacionalidade' => ['m' => 'Letão', 'f' => 'Letã']
+            'nacionalidade' => [
+                'm' => 'Letão',
+                'f' => 'Letã'
+            ]
         ],
         [
             'value'         => "Líbano",
             'flag'          => "lb",
             'text'          => "Líbano",
-            'nacionalidade' => ['m' => 'Libanês', 'f' => 'Libanesa']
+            'nacionalidade' => [
+                'm' => 'Libanês',
+                'f' => 'Libanesa'
+            ]
         ],
         [
             'value'         => "Lesoto",
             'flag'          => "ls",
             'text'          => "Lesoto",
-            'nacionalidade' => ['m' => 'Lesotense', 'f' => 'Lesotense']
+            'nacionalidade' => [
+                'm' => 'Lesotense',
+                'f' => 'Lesotense'
+            ]
         ],
         [
             'value'         => "Libéria",
             'flag'          => "lr",
             'text'          => "Libéria",
-            'nacionalidade' => ['m' => 'Liberiano', 'f' => 'Liberiana']
+            'nacionalidade' => [
+                'm' => 'Liberiano',
+                'f' => 'Liberiana'
+            ]
         ],
         [
             'value'         => "Líbia",
             'flag'          => "ly",
             'text'          => "Líbia",
-            'nacionalidade' => ['m' => 'Líbio', 'f' => 'Líbia']
+            'nacionalidade' => [
+                'm' => 'Líbio',
+                'f' => 'Líbia'
+            ]
         ],
         [ 
             'value'         => "Liechtenstein",
             'flag'          => "li",
             'text'          => "Liechtenstein",
-            'nacionalidade' => ['m' => 'Liechtensteiniano', 'f' => 'Liechtensteiniana']
+            'nacionalidade' => [
+                'm' => 'Liechtensteiniano',
+                'f' => 'Liechtensteiniana'
+            ]
         ],
         [ 
             'value'         => "Lituânia",
             'flag'          => "lt",
             'text'          => "Lituânia",
-            'nacionalidade' => ['m' => 'Lituano', 'f' => 'Lituana']
+            'nacionalidade' => [
+                'm' => 'Lituano',
+                'f' => 'Lituana'
+            ]
         ],
         [ 
             'value' => "Luxemburgo", 
             'flag' => "lu", 
             'text' => "Luxemburgo",
-            'nacionalidade' => ['m' => 'Luxemburguês', 'f' => 'Luxemburguesa']
+            'nacionalidade' => [
+                'm' => 'Luxemburguês',
+                'f' => 'Luxemburguesa'
+            ]
         ],
         [ 
             'value' => "Macedônia do Norte", 
             'flag' => "mk", 
             'text' => "Macedônia do Norte",
-            'nacionalidade' => ['m' => 'Macedônio', 'f' => 'Macedônia']
+            'nacionalidade' => [
+                'm' => 'Macedônio', 
+                'f' => 'Macedônia'
+            ]
         ],
         [ 
             'value' => "Macedônia", 
             'flag' => "mk", 
             'text' => "Macedônia",
-            'nacionalidade' => ['m' => 'Macedônio', 'f' => 'Macedônia']
+            'nacionalidade' => [
+                'm' => 'Macedônio',
+                'f' => 'Macedônia'
+            ]
         ],
         [ 
             'value' => "Madagáscar", 
             'flag' => "mg", 
             'text' => "Madagáscar",
-            'nacionalidade' => ['m' => 'Madagascariano', 'f' => 'Madagascariana']
+            'nacionalidade' => [
+                'm' => 'Madagascariano',
+                'f' => 'Madagascariana'
+            ]
         ],
         [ 
             'value' => "Malawi", 
             'flag' => "mw", 
             'text' => "Malawi",
-            'nacionalidade' => ['m' => 'Malawiano', 'f' => 'Malawiana']
+            'nacionalidade' => [
+                'm' => 'Malawiano',
+                'f' => 'Malawiana'
+            ]
         ],
         [ 
             'value' => "Malásia",
             'flag' => "my",
             'text' => "Malásia",
-            'nacionalidade' => ['m' => 'Malaio', 'f' => 'Malásia']
+            'nacionalidade' => [
+                'm' => 'Malaio',
+                'f' => 'Malásia'
+            ]
         ],
         [ 
             'value' => "Maldivas",
             'flag' => "mv",
             'text' => "Maldivas",
-            'nacionalidade' => ['m' => 'Maldivo', 'f' => 'Maldiva']
+            'nacionalidade' => [
+                'm' => 'Maldivo',
+                'f' => 'Maldiva'
+            ]
         ],
         [ 
             'value' => "Mali", 
             'flag' => "ml", 
             'text' => "Mali",
-            'nacionalidade' => ['m' => 'Maliano', 'f' => 'Maliano']
+            'nacionalidade' => [
+                'm' => 'Maliano',
+                'f' => 'Maliano'
+            ]
         ],
         [ 
             'value' => "Malta", 
             'flag' => "mt", 
             'text' => "Malta",
-            'nacionalidade' => ['m' => 'Maltês', 'f' => 'Maltês']
+            'nacionalidade' => [
+                'm' => 'Maltês',
+                'f' => 'Maltês'
+            ]
         ],
         [ 
             'value' => "Marrocos", 
             'flag' => "ma", 
             'text' => "Marrocos",
-            'nacionalidade' => ['m' => 'Marroquino', 'f' => 'Marroquina']
+            'nacionalidade' => [
+                'm' => 'Marroquino',
+                'f' => 'Marroquina'
+            ]
         ],
         [ 
             'value' => "Maurício", 
             'flag' => "mu", 
             'text' => "Maurício",
-            'nacionalidade' => ['m' => 'Mauriciano', 'f' => 'Mauriciana']
+            'nacionalidade' => [
+                'm' => 'Mauriciano',
+                'f' => 'Mauriciana'
+            ]
         ],
         [ 
             'value' => "México", 
             'flag' => "mx", 
             'text' => "México",
-            'nacionalidade' => ['m' => 'Mexicano', 'f' => 'Mexicana']
+            'nacionalidade' => [
+                'm' => 'Mexicano',
+                'f' => 'Mexicana'
+            ]
         ],
         [ 
             'value' => "Micronésia",
             'flag' => "fm",
             'text' => "Micronésia",
-            'nacionalidade' => ['m' => 'Micronésio', 'f' => 'Micronésia']
+            'nacionalidade' => [
+                'm' => 'Micronésio',
+                'f' => 'Micronésia'
+            ]
         ],
         [ 
             'value' => "Moldávia",
             'flag' => "md", 
             'text' => "Moldávia",
-            'nacionalidade' => ['m' => 'Moldávio', 'f' => 'Moldávia']
+            'nacionalidade' => [
+                'm' => 'Moldávio',
+                'f' => 'Moldávia'
+            ]
         ],
         [ 
             'value' => "Mônaco", 
             'flag' => "mc", 
             'text' => "Mônaco",
-            'nacionalidade' => ['m' => 'Monegasco', 'f' => 'Monegasca']
+            'nacionalidade' => [
+                'm' => 'Monegasco',
+                'f' => 'Monegasca'
+            ]
         ],
         [ 
             'value' => "Mongólia", 
             'flag' => "mn", 
             'text' => "Mongólia",
-            'nacionalidade' => ['m' => 'Mongol', 'f' => 'Mongol']
+            'nacionalidade' => [
+                'm' => 'Mongol',
+                'f' => 'Mongol'
+            ]
         ],
         [ 
             'value' => "Montenegro", 
             'flag' => "me", 
             'text' => "Montenegro",
-            'nacionalidade' => ['m' => 'Montenegrino', 'f' => 'Montenegrina']
+            'nacionalidade' => [
+                'm' => 'Montenegrino',
+                'f' => 'Montenegrina'
+            ]
         ],
         [ 
             'value' => "Moçambique", 
             'flag' => "mz", 
             'text' => "Moçambique",
-            'nacionalidade' => ['m' => 'Moçambicano', 'f' => 'Moçambicana']
+            'nacionalidade' => [
+                'm' => 'Moçambicano',
+                'f' => 'Moçambicana'
+            ]
         ],
         [   'value' => "Namíbia",
             'flag' => "na",
             'text' => "Namíbia",
-            'nacionalidade' => ['m' => 'Namibiano', 'f' => 'Namibiana']
+            'nacionalidade' => [
+                'm' => 'Namibiano',
+                'f' => 'Namibiana'
+            ]
         ],
         [   'value' => "Nauru",
             'flag' => "nr",
             'text' => "Nauru",
-            'nacionalidade' => ['m' => 'Nauruano', 'f' => 'Nauruana']
+            'nacionalidade' => [
+                'm' => 'Nauruano', 
+                'f' => 'Nauruana'
+            ]
         ],
         [ 
             'value' => "Nepal",
             'flag' => "np",
             'text' => "Nepal",
-            'nacionalidade' => ['m' => 'nepalês', 'f' => 'nepalesa']
+            'nacionalidade' => [
+                'm' => 'Nepalês',   
+                'f' => 'Nepalesa'
+            ]
         ],
         [ 
             'value' => "Nicarágua",
             'flag' => "ni",
             'text' => "Nicarágua",
-            'nacionalidade' => ['m' => 'nicaraguense', 'f' => 'nicaraguense']
+            'nacionalidade' => [
+                'm' => 'Nicaraguense',
+                'f' => 'Nicaraguense'
+            ]
         ],
         [ 
             'value' => "Níger",
             'flag' => "ne",
             'text' => "Níger",
-            'nacionalidade' => ['m' => 'nigerino', 'f' => 'nigerina']
+            'nacionalidade' => [
+                'm' => 'Nigerino',
+                'f' => 'Nigerina'
+            ]
         ],
         [ 
             'value' => "Nigéria",
             'flag' => "ng",
             'text' => "Nigéria",
-            'nacionalidade' => ['m' => 'nigeriano', 'f' => 'nigeriana']
+            'nacionalidade' => [
+                'm' => 'Nigeriano',
+                'f' => 'Nigeriana'
+            ]
         ],
         [ 
             'value' => "Noruega",
             'flag' => "no",
             'text' => "Noruega",
-            'nacionalidade' => ['m' => 'norueguês', 'f' => 'norueguesa']
+            'nacionalidade' => [
+                'm' => 'Norueguês',
+                'f' => 'Norueguesa'
+            ]
         ],
         [ 
             'value' => "Nova Zelândia",
             'flag' => "nz",
             'text' => "Nova Zelândia",
-            'nacionalidade' => ['m' => 'neozelandês', 'f' => 'neozelandesa']
+            'nacionalidade' => [
+                'm' => 'Neozelandês',
+                'f' => 'Neozelandesa'
+            ]
         ],
         [ 
             'value' => "Omã",
             'flag' => "om",
             'text' => "Omã",
-            'nacionalidade' => ['m' => 'omanense', 'f' => 'omanense']
+            'nacionalidade' => [
+                'm' => 'Omanense',
+                'f' => 'Omanense'
+            ]
         ],
         [ 
             'value' => "Paquistão",

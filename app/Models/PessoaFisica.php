@@ -11,8 +11,14 @@ class PessoaFisica extends Model
 
     protected $fillable = [
         'nome',
-        'cpf',
+        'genero',
+        'pais_origem',
+        'nacionalidade',
+        'cpf_cin',
         'rg',
+        'rne_crnm',
+        'cnh',
+        'passaporte',
         'estado_civil',
         'profissao',
         'email',

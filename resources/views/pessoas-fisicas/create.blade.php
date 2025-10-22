@@ -30,10 +30,10 @@
                         <label for="genero" class="form-label">Gênero</label>
                         <select id="genero" name="genero" data-placeholder="Escolha...">
                         <option value="">Escolha...</option>
-                            <option value="Masculino" {{ old('genero') == 'Masculino' ? 'selected' : '' }}>
+                            <option value="m" {{ old('genero') == 'm' ? 'selected' : '' }}>
                                 Masculino
                             </option>
-                            <option value="Feminino" {{ old('genero') == 'Feminino' ? 'selected' : '' }}>
+                            <option value="f" {{ old('genero') == 'f' ? 'selected' : '' }}>
                                 Feminino
                             </option>
                     </select>
@@ -58,8 +58,8 @@
 
                 <div class="col-md-3">
                     <div class="mb-3">
-                        <label for="cpf" class="form-label">CPF/CIN</label>
-                        <input type="text" id="cpf" class="form-control" name="cpf" data-toggle="input-mask" data-mask-format="999.999.999-99" value="{{ old('cpf') }}">
+                        <label for="cpf_cin" class="form-label">CPF/CIN</label>
+                        <input type="text" id="cpf_cin" class="form-control" name="cpf_cin" data-toggle="input-mask" data-mask-format="999.999.999-99" value="{{ old('cpf_cin') }}">
                     </div>
                 </div>
 

@@ -24,14 +24,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Atualiza opções com base no gênero
     function atualizarEstadosCivis(genero) {
-        const lista = genero === "Masculino" ? ESTADOS_CIVIS_MASCULINOS : ESTADOS_CIVIS_FEMININOS;
+        const lista = genero === "m" ? ESTADOS_CIVIS_MASCULINOS : ESTADOS_CIVIS_FEMININOS;
         tsEstadoCivil.clearOptions();
         tsEstadoCivil.addOption(lista.map(e => ({ value: e, text: e })));
         tsEstadoCivil.refreshOptions(false);
     }
 
     function atualizarProfissoes(genero) {
-        const lista = genero === "Masculino" ? PROFISSOES_MASCULINAS : PROFISSOES_FEMININAS;
+        const lista = genero === "m" ? PROFISSOES_MASCULINAS : PROFISSOES_FEMININAS;
         tsProfissao.clearOptions();
         tsProfissao.addOption(lista.map(p => ({ value: p, text: p })));
         tsProfissao.refreshOptions(false);

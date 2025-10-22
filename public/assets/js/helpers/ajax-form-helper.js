@@ -9,8 +9,7 @@
 
         if (value.length !== 11 || /^(\d)\1{10}$/.test(value)) return false;
 
-        let soma, resto;
-        soma = 0;
+        let soma = 0, resto;
         for (let i = 1; i <= 9; i++) soma += parseInt(value.substring(i - 1, i)) * (11 - i);
         resto = (soma * 10) % 11;
         if (resto === 10 || resto === 11) resto = 0;
@@ -28,7 +27,6 @@
         value = value.replace(/[^\d]+/g, "");
         if (value.length !== 14) return false;
 
-        // Elimina CNPJs inválidos conhecidos
         if (/^(\d)\1{13}$/.test(value)) return false;
 
         let tamanho = value.length - 2;
@@ -41,7 +39,8 @@
             soma += numeros.charAt(tamanho - i) * pos--;
             if (pos < 2) pos = 9;
         }
-        let resultado = soma % 11 < 2 ? 0 : 11 - soma % 11;
+
+        let resultado = soma % 11 < 2 ? 0 : 11 - (soma % 11);
         if (resultado != digitos.charAt(0)) return false;
 
         tamanho += 1;
@@ -52,11 +51,12 @@
             soma += numeros.charAt(tamanho - i) * pos--;
             if (pos < 2) pos = 9;
         }
-        resultado = soma % 11 < 2 ? 0 : 11 - soma % 11;
+
+        resultado = soma % 11 < 2 ? 0 : 11 - (soma % 11);
         return resultado == digitos.charAt(1);
     }, "Informe um CNPJ válido.");
 
-    // --- FUNÇÃO PRINCIPAL: configuração de formulário AJAX ---
+    // --- FUNÇÃO PRINCIPAL: configuração de formulário ---
     window.setupAjaxForm = function (formSelector, options = {}) {
         const form = $(formSelector);
         if (!form.length) return;
@@ -84,55 +84,66 @@
 
             submitHandler: async function (formEl) {
                 const formData = new FormData(formEl);
+                const isAjax = formEl.hasAttribute("data-ajax"); // controle opcional para AJAX
 
                 try {
-                    const response = await fetch(formEl.action, {
-                        method: formEl.method || "POST",
-                        body: formData,
-                        headers: {
-                            "X-Requested-With": "XMLHttpRequest",
-                            "X-CSRF-TOKEN": document.querySelector('input[name="_token"]').value
-                        }
-                    });
-
-                    const data = await response.json();
-
-                    if (response.ok) {
-                        notyf.success(data.message || "Registro salvo com sucesso!");
-                        formEl.reset();
-                        $(".is-invalid").removeClass("is-invalid");
-                        $(".invalid-feedback").remove();
-
-                        document.querySelectorAll(".ts-wrapper").forEach(wrapper => {
-                            const select = wrapper.tomselect;
-                            if (select) select.clear();
+                    if (isAjax) {
+                        // Envio AJAX
+                        const response = await fetch(formEl.action, {
+                            method: formEl.method || "POST",
+                            body: formData,
+                            headers: {
+                                "X-Requested-With": "XMLHttpRequest",
+                                "X-CSRF-TOKEN": document.querySelector('input[name="_token"]').value
+                            }
                         });
 
-                    } else if (response.status === 422) {
-                        notyf.error("Alguns campos precisam ser corrigidos.");
+                        const data = await response.json();
 
-                        for (const [field, messages] of Object.entries(data.errors)) {
-                            const input = formEl.querySelector(`[name="${field}"]`);
-                            if (input) {
-                                input.classList.add("is-invalid");
-                                const feedback = document.createElement("div");
-                                feedback.classList.add("invalid-feedback");
-                                feedback.innerText = messages[0];
-                                input.parentNode.appendChild(feedback);
+                        if (response.ok) {
+                            notyf.success(data.message || "Registro salvo com sucesso!");
+
+                            // Reset de campos e TomSelect
+                            formEl.reset();
+                            $(".is-invalid").removeClass("is-invalid");
+                            $(".invalid-feedback").remove();
+
+                            document.querySelectorAll(".ts-wrapper").forEach(wrapper => {
+                                const select = wrapper.tomselect;
+                                if (select) select.clear();
+                            });
+
+                            // Redirecionamento se informado
+                            if (data.redirect) window.location.href = data.redirect;
+                        } else if (response.status === 422) {
+                            notyf.error("Alguns campos precisam ser corrigidos.");
+
+                            for (const [field, messages] of Object.entries(data.errors)) {
+                                const input = formEl.querySelector(`[name="${field}"]`);
+                                if (input) {
+                                    input.classList.add("is-invalid");
+                                    const feedback = document.createElement("div");
+                                    feedback.classList.add("invalid-feedback");
+                                    feedback.innerText = messages[0];
+                                    input.parentNode.appendChild(feedback);
+                                }
                             }
-                        }
 
-                        const firstInvalid = formEl.querySelector(".is-invalid");
-                        if (firstInvalid) {
-                            firstInvalid.scrollIntoView({ behavior: "smooth", block: "center" });
+                            const firstInvalid = formEl.querySelector(".is-invalid");
+                            if (firstInvalid) firstInvalid.scrollIntoView({ behavior: "smooth", block: "center" });
+
+                        } else {
+                            notyf.error(data.message || "Ocorreu um erro ao salvar o formulário.");
                         }
 
                     } else {
-                        notyf.error(data.message || "Ocorreu um erro ao salvar o formulário.");
+                        // Submit normal (não AJAX) → deixa o browser cuidar do redirect
+                        formEl.submit();
                     }
 
                 } catch (error) {
                     notyf.error("Falha de conexão com o servidor.");
+                    console.error("Erro AJAX:", error);
                 }
             }
         });

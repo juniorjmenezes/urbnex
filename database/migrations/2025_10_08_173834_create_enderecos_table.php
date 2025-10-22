@@ -12,13 +12,13 @@ return new class extends Migration
             $table->id();
 
             // Campos principais
-            $table->string('cep', 9)->nullable();
-            $table->string('logradouro', 255)->nullable();
-            $table->string('numero', 10)->nullable();
+            $table->string('cep', 9);
+            $table->string('logradouro', 255);
+            $table->string('numero', 10);
             $table->string('complemento', 255)->nullable();
-            $table->string('bairro', 100)->nullable();
-            $table->string('cidade', 100)->nullable();
-            $table->string('estado', 2)->nullable();
+            $table->string('bairro', 100);
+            $table->string('cidade', 100);
+            $table->string('estado', 2);
             
             // Timestamps
             $table->timestamps();

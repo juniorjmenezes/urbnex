@@ -13,7 +13,7 @@ return new class extends Migration
 
             // Campos principais
             $table->string('nome');
-            $table->string('cpf', 20)->nullable();
+            $table->string('cpf_cin', 20)->nullable();
             $table->string('rg', 20)->nullable();
             $table->string('estado_civil')->nullable();
             $table->string('profissao')->nullable();
