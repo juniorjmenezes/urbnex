@@ -89,13 +89,13 @@ class PessoaFisicaController extends Controller
     {
         // Validação
         $validated = $request->validate([
-            // Pessoa Física
+              // Pessoa Física
             'nome'         => 'required|string|max:255',
             'genero'       => ['required', Rule::in(['m', 'f'])],
             'pais_origem'  => 'required|string',
             'cpf_cin'      => 'required|string|max:14|unique:pessoas_fisicas,cpf_cin',
             'rg'           => 'nullable|string|max:14|unique:pessoas_fisicas,rg',
-            'crnm'         => 'nullable|string|max:14|unique:pessoas_fisicas,crnm',
+            'rne_crnm'     => 'nullable|string|max:14|unique:pessoas_fisicas,rne_crnm',
             'cnh'          => 'nullable|string|max:14|unique:pessoas_fisicas,cnh',
             'passaporte'   => 'nullable|string|max:14|unique:pessoas_fisicas,passaporte',
             'estado_civil' => 'required|string|max:255',
@@ -141,7 +141,7 @@ class PessoaFisicaController extends Controller
                 'nacionalidade' => $nacionalidade,
                 'cpf_cin'       => $validated['cpf_cin'],
                 'rg'            => $validated['rg'] ?? null,
-                'crnm'          => $validated['crnm'] ?? null,
+                'rne_crnm'      => $validated['rne_crnm'] ?? null,
                 'cnh'           => $validated['cnh'] ?? null,
                 'passaporte'    => $validated['passaporte'] ?? null,
                 'estado_civil'  => $validated['estado_civil'],
@@ -174,14 +174,18 @@ class PessoaFisicaController extends Controller
         }
     }
 
-
     /**
      * Exibir formulário de edição
      */
     public function edit(PessoaFisica $pessoaFisica)
     {
+        $paisesOrigem = config('selects.paises_origem');
+        $profissoesMasculinas = config('selects.profissoes_masculinas');
+        $profissoesFemininas = config('selects.profissoes_femininas');
+        $estadosCivisMasculinos = config('selects.estados_civis_masculinos');
+        $estadosCivisFemininos = config('selects.estados_civis_femininos');
         $enderecos = Endereco::all();
-        return view('pessoas-fisicas.edit', compact('pessoaFisica', 'enderecos'));
+        return view('pessoas-fisicas.edit', compact('pessoaFisica', 'paisesOrigem', 'profissoesMasculinas', 'profissoesFemininas', 'estadosCivisMasculinos', 'estadosCivisFemininos', 'enderecos'));
     }
 
     /**
@@ -189,21 +193,93 @@ class PessoaFisicaController extends Controller
      */
     public function update(Request $request, PessoaFisica $pessoaFisica)
     {
+        // Validação
         $validated = $request->validate([
-            'nome'        => 'required|string|max:255',
-            'cpf_cin'         => "required|string|max:20|unique:pessoas_fisicas,cpf_cin,{$pessoaFisica->id}",
-            'rg'          => "required|string|max:20|unique:pessoas_fisicas,rg,{$pessoaFisica->id}",
-            'email'       => 'nullable|email|max:255',
-            'telefone_1'  => 'nullable|string|max:20',
-            'telefone_2'  => 'nullable|string|max:20',
-            'endereco_id' => 'nullable|exists:enderecos,id',
+            // Pessoa Física
+            'nome'         => 'required|string|max:255',
+            'genero'       => ['required', Rule::in(['m', 'f'])],
+            'pais_origem'  => 'required|string',
+            'cpf_cin'      => ['required','string','max:14', Rule::unique('pessoas_fisicas','cpf_cin')->ignore($pessoaFisica->id)],
+            'rg'           => ['nullable','string','max:14', Rule::unique('pessoas_fisicas','rg')->ignore($pessoaFisica->id)],
+            'rne_crnm'     => ['nullable','string','max:14', Rule::unique('pessoas_fisicas','rne_crnm')->ignore($pessoaFisica->id)],
+            'cnh'          => ['nullable','string','max:14', Rule::unique('pessoas_fisicas','cnh')->ignore($pessoaFisica->id)],
+            'passaporte'   => ['nullable','string','max:14', Rule::unique('pessoas_fisicas','passaporte')->ignore($pessoaFisica->id)],
+            'estado_civil' => 'required|string|max:255',
+            'profissao'    => 'required|string|max:255',
+            'email'        => 'nullable|email|max:255',
+            'telefone'     => 'nullable|string|max:15',
+
+            // Endereço
+            'cep'         => 'required|string|max:9',
+            'logradouro'  => 'required|string|max:255',
+            'numero'      => 'required|string|max:10',
+            'complemento' => 'nullable|string|max:255',
+            'bairro'      => 'required|string|max:255',
+            'cidade'      => 'required|string|max:255',
+            'estado'      => 'required|string|max:2'
         ]);
 
-        $pessoaFisica->update($validated);
+        DB::beginTransaction();
 
-        return redirect()->route('pessoas-fisicas.index')
-                         ->with('success', 'Pessoa Física atualizada com sucesso!');
+        try {
+            // Atualização do endereço
+            $endereco = $pessoaFisica->endereco;
+            $endereco->update([
+                'cep'         => $validated['cep'],
+                'logradouro'  => $validated['logradouro'],
+                'numero'      => $validated['numero'],
+                'complemento' => $validated['complemento'] ?? null,
+                'bairro'      => $validated['bairro'],
+                'cidade'      => $validated['cidade'],
+                'estado'      => $validated['estado'],
+            ]);
+
+            // Buscar país e nacionalidade
+            $paisSelecionado = collect(config('selects.paises_origem'))
+                ->first(fn($pais) => strcasecmp($pais['value'], trim($validated['pais_origem'])) === 0);
+
+            $nacionalidade = $paisSelecionado['nacionalidade'][$validated['genero']] ?? 'N/A';
+
+            // Atualização da pessoa física
+            $pessoaFisica->update([
+                'nome'          => $validated['nome'],
+                'genero'        => $validated['genero'],
+                'pais_origem'   => $validated['pais_origem'],
+                'nacionalidade' => $nacionalidade,
+                'cpf_cin'       => $validated['cpf_cin'],
+                'rg'            => $validated['rg'] ?? null,
+                'rne_crnm'      => $validated['rne_crnm'] ?? null,
+                'cnh'           => $validated['cnh'] ?? null,
+                'passaporte'    => $validated['passaporte'] ?? null,
+                'estado_civil'  => $validated['estado_civil'],
+                'profissao'     => $validated['profissao'],
+                'email'         => $validated['email'] ?? null,
+                'telefone'      => $validated['telefone'] ?? null,
+            ]);
+
+            DB::commit();
+
+            return redirect()->route('pessoasFisicas.index')
+                ->with('success', 'Pessoa Física atualizada com sucesso!');
+
+        } catch (\Throwable $e) {
+            DB::rollBack();
+
+            // Log do erro
+            Log::error('Erro ao atualizar Pessoa Física', ['exception' => $e]);
+
+            // Em desenvolvimento, mostra erro detalhado
+            if (app()->environment('local')) {
+                throw $e;
+            }
+
+            // Em produção, mensagem genérica
+            return redirect()->back()
+                ->with('error', 'Ocorreu um erro inesperado. Tente novamente mais tarde.')
+                ->withInput();
+        }
     }
+
 
     /**
      * Deletar Pessoa Física

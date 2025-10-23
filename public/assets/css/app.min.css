@@ -21024,3 +21024,10 @@ div:where(.swal2-icon).swal2-success
   background-color: var(--ct-secondary-bg);
 }
 /*# sourceMappingURL=app.min.css.map */
+.btn-gbr {
+  cursor: pointer !important;
+  color: var(--ct-topbar-item-color) !important;
+}
+.btn-gbr:hover {
+  color: var(--ct-topbar-item-hover-color) !important;
+}

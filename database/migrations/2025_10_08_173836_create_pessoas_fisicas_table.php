@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('nacionalidade')->default('Brasileiro(a)');
             $table->string('cpf_cin', 14)->unique();
             $table->string('rg')->nullable()->unique();
-            $table->string('crnm', 14)->nullable()->unique();
+            $table->string('rne_crnm', 14)->nullable()->unique();
             $table->string('cnh', 9)->nullable()->unique();
             $table->string('passaporte', 9)->nullable()->unique();
             $table->string('estado_civil')->nullable();
