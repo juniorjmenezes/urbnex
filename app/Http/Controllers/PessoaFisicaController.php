@@ -20,7 +20,13 @@ class PessoaFisicaController extends Controller
      */
     public function index()
     {
-        return view('pessoas-fisicas.index');
+        $paisesOrigem = config('selects.paises_origem');
+        $profissoesMasculinas = config('selects.profissoes_masculinas');
+        $profissoesFemininas = config('selects.profissoes_femininas');
+        $estadosCivisMasculinos = config('selects.estados_civis_masculinos');
+        $estadosCivisFemininos = config('selects.estados_civis_femininos');
+        $enderecos = Endereco::all();
+        return view('pessoas-fisicas.index', compact('paisesOrigem', 'profissoesMasculinas', 'profissoesFemininas', 'estadosCivisMasculinos', 'estadosCivisFemininos', 'enderecos'));
     }
 
     public function getPessoas(Request $request)

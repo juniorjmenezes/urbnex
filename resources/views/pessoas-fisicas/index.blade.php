@@ -30,6 +30,7 @@
         <div id="table-pessoas"></div>
     </div>
 </div>
+@include('pessoas-fisicas.create-modal')
 @endsection
 
 @section('scripts')

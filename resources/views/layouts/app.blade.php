@@ -55,6 +55,8 @@
     <script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
     <!-- Tom Select js -->
     <script src="{{ asset('assets/vendor/tom-select/tom-select.complete.min.js') }}"></script>
+    <!-- Tom Select Helper -->
+    <script src="{{ asset('assets/js/helpers/tom-select-helper.js') }}"></script>
     <!-- App JS -->
     <script src="{{ asset('assets/js/app.js') }}"></script>
     <script>

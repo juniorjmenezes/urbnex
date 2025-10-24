@@ -11,6 +11,7 @@ function initTomSelect(selectors, options = {}) {
             field: "text",
             direction: "asc"
         },
+        dropdownDirection: 'up',
     };
 
     // Garante que sempre trabalharemos com uma lista
