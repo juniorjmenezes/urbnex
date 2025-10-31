@@ -1,30 +1,12 @@
 document.addEventListener("DOMContentLoaded", function () {
-    // ===== Detecta formulário =====
     const form = document.querySelector("#formStorePessoaFisica") || document.querySelector("#formUpdatePessoaFisica");
     if (!form) return;
 
-    // ===== Inicializa TomSelect =====
-    initTomSelect(["#genero"]);
-
-    // País de origem com bandeiras
-    const tsPaisOrigem = new TomSelect("#pais_origem", {
-        render: {
-            option: data => `<div><span class="fi fi-${data.flag} me-2"></span> ${data.text}</div>`,
-            item: data => `<div><span class="fi fi-${data.flag} me-1"></span> ${data.text}</div>`
-        }
-    });
-
-    // Estado civil
-    const tsEstadoCivil = new TomSelect("#estado_civil", {
-        create: false,
-        sortField: { field: "text", direction: "asc" }
-    });
-
-    // Profissão
-    const tsProfissao = new TomSelect("#profissao", {
-        create: true,
-        sortField: { field: "text", direction: "asc" }
-    });
+    // ===== Campos =====
+    const generoSelect = $("#genero");
+    const paisSelect = $("#pais_origem");
+    const estadoCivilSelect = $("#estado_civil");
+    const profissaoSelect = $("#profissao");
 
     // ===== Atualizadores =====
     function atualizarEstadosCivis(genero) {
@@ -33,9 +15,9 @@ document.addEventListener("DOMContentLoaded", function () {
         else if (genero === "f") lista = ESTADOS_CIVIS_FEMININOS;
         else lista = [...ESTADOS_CIVIS_MASCULINOS, ...ESTADOS_CIVIS_FEMININOS];
 
-        tsEstadoCivil.clearOptions();
-        tsEstadoCivil.addOption(lista.map(e => ({ value: e, text: e })));
-        tsEstadoCivil.refreshOptions(false);
+        estadoCivilSelect.empty().append('<option value="">Escolha...</option>');
+        lista.forEach(e => estadoCivilSelect.append(new Option(e, e)));
+        estadoCivilSelect.trigger("change.select2");
     }
 
     function atualizarProfissoes(genero) {
@@ -44,17 +26,14 @@ document.addEventListener("DOMContentLoaded", function () {
         else if (genero === "f") lista = PROFISSOES_FEMININAS;
         else lista = [...PROFISSOES_MASCULINAS, ...PROFISSOES_FEMININAS];
 
-        tsProfissao.clearOptions();
-        tsProfissao.addOption(lista.map(p => ({ value: p, text: p })));
-        tsProfissao.refreshOptions(false);
+        profissaoSelect.empty().append('<option value="">Escolha...</option>');
+        lista.forEach(p => profissaoSelect.append(new Option(p, p)));
+        profissaoSelect.trigger("change.select2");
     }
 
     // ===== Eventos =====
-    const generoSelect = document.querySelector("#genero");
-    const paisSelect = document.querySelector("#pais_origem");
-
-    generoSelect.addEventListener("change", function () {
-        const genero = this.value;
+    generoSelect.on("change", function () {
+        const genero = $(this).val();
         atualizarEstadosCivis(genero);
         atualizarProfissoes(genero);
     });
@@ -69,25 +48,24 @@ document.addEventListener("DOMContentLoaded", function () {
         if (crnmDiv) crnmDiv.style.display = isBrasileiro ? "none" : "";
     }
 
-    paisSelect.addEventListener("change", function () {
-        atualizarCamposDocumento(this.value);
+    paisSelect.on("change", function () {
+        atualizarCamposDocumento($(this).val());
     });
 
     // ===== Estado inicial =====
-    const generoInicial = generoSelect.value;
-    const paisInicial = paisSelect.value || "Brasil";
+    const generoInicial = generoSelect.val();
+    const paisInicial = paisSelect.val() || "Brasil";
 
-    // Popula sempre (com base no gênero ou com tudo)
     atualizarEstadosCivis(generoInicial);
     atualizarProfissoes(generoInicial);
     atualizarCamposDocumento(paisInicial);
 
-    // ===== Restaura valores anteriores (na edição) =====
-    const estadoCivilValor = tsEstadoCivil.input.getAttribute("data-old") || tsEstadoCivil.input.value;
-    const profissaoValor = tsProfissao.input.getAttribute("data-old") || tsProfissao.input.value;
+    // ===== Restaura valores antigos (edição) =====
+    const estadoCivilValor = estadoCivilSelect.data("old") || estadoCivilSelect.val();
+    const profissaoValor = profissaoSelect.data("old") || profissaoSelect.val();
 
-    if (estadoCivilValor) tsEstadoCivil.setValue(estadoCivilValor, true);
-    if (profissaoValor) tsProfissao.setValue(profissaoValor, true);
+    if (estadoCivilValor) estadoCivilSelect.val(estadoCivilValor).trigger("change.select2");
+    if (profissaoValor) profissaoSelect.val(profissaoValor).trigger("change.select2");
 
     // ===== Validação e envio AJAX =====
     setupAjaxForm(`#${form.id}`, {

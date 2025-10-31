@@ -58,7 +58,7 @@
   --ct-sidenav-user-bg: #e2eeff;
 }
 :root[data-topbar-color="light"] {
-  --ct-topbar-bg: #ffffff;
+  --ct-topbar-bg: #252631;
   --ct-topbar-item-color: #6c757d;
   --ct-topbar-item-hover-color: #188ae2;
   --ct-topbar-search-bg: #eaeff3;
