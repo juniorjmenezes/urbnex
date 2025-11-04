@@ -12,8 +12,8 @@
 <div class="row">
     <!--sidebar-->
     <div class="col-md-3 h-100">
-        <div class="card">
-            <div class="card-body">
+        <div class="card card-flush bg-transparent">
+            <div class="card-body p-0">
                 <div class="d-flex flex-column">
                     <div class="d-flex justify-content-between gap-2 align-items-center mb-2">
                         <button type="button" class="btn fw-medium btn-primary w-100">
