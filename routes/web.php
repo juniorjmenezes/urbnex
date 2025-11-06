@@ -19,7 +19,8 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
-require __DIR__.'/pessoas-juridicas.php';
-require __DIR__.'/pessoas-fisicas.php';
-require __DIR__.'/processos.php';
+
+// Rotas URBNEX
+require __DIR__.'/urbnex.php';
+
 

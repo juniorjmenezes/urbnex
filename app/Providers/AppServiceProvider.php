@@ -19,6 +19,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        // Carregar migrations do UrbNex
+        $this->loadMigrationsFrom(database_path('migrations/urbnex'));
     }
 }

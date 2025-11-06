@@ -16,18 +16,31 @@ use App\Models\Endereco;
 class PessoaFisicaController extends Controller
 {
     /**
-     * Exibir a lista de Pessoas Jurídicas
+     * Exibir a lista de Pessoas Físicas
      */
     public function index()
     {
-        $paisesOrigem = config('selects.paises_origem');
-        $profissoesMasculinas = config('selects.profissoes_masculinas');
-        $profissoesFemininas = config('selects.profissoes_femininas');
-        $estadosCivisMasculinos = config('selects.estados_civis_masculinos');
-        $estadosCivisFemininos = config('selects.estados_civis_femininos');
-        $enderecos = Endereco::all();
-        return view('pessoas-fisicas.index', compact('paisesOrigem', 'profissoesMasculinas', 'profissoesFemininas', 'estadosCivisMasculinos', 'estadosCivisFemininos', 'enderecos'));
+        return view('urbnex.pessoas-fisicas.index');
     }
+
+    // Endpoint para buscar Pessoas Físicas
+    public function getData(Request $request)
+    {
+        if ($request->ajax()) {
+            $data = PessoaFisica::select(['id', 'nome', 'cpf_cin']);
+            
+            return DataTables::of($data)
+                ->addColumn('actions', function ($row) {
+                    $btn  = '<a href="'.route('pessoas.show', $row->id).'" class="btn btn-sm btn-info">Ver</a> ';
+                    $btn .= '<a href="'.route('pessoas.edit', $row->id).'" class="btn btn-sm btn-warning">Editar</a> ';
+                    $btn .= '<button data-id="'.$row->id.'" class="btn btn-sm btn-danger btnDelete">Excluir</button>';
+                    return $btn;
+                })
+                ->rawColumns(['actions'])
+                ->make(true);
+        }
+    }
+
 
     public function getPessoas(Request $request)
     {
@@ -85,7 +98,7 @@ class PessoaFisicaController extends Controller
         $estadosCivisFemininos = config('selects.estados_civis_femininos');
         $enderecos = Endereco::all();
 
-        return view('pessoas-fisicas.create', compact('paisesOrigem', 'profissoesMasculinas', 'profissoesFemininas', 'estadosCivisMasculinos', 'estadosCivisFemininos', 'enderecos'));
+        return view('urbnex.pessoas-fisicas.create', compact('paisesOrigem', 'profissoesMasculinas', 'profissoesFemininas', 'estadosCivisMasculinos', 'estadosCivisFemininos', 'enderecos'));
     }
 
     /**
