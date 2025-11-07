@@ -2674,7 +2674,8 @@ progress {
 
 .form-label {
     margin-bottom: .5rem;
-    font-size: 1.05rem;
+    font-family: 'Google Sans Text', sans-serif;
+    font-size: 0.95rem;
     font-weight: 500;
     color: var(--bs-gray-800)
 }
@@ -2711,7 +2712,7 @@ progress {
     display: block;
     width: 100%;
     padding: .775rem 1rem;
-    font-size: 1.1rem;
+    font-size: 1rem;
     font-weight: 500;
     line-height: 1.5;
     color: var(--bs-gray-700);
@@ -2887,7 +2888,7 @@ textarea.form-control-lg {
     display: block;
     width: 100%;
     padding: .775rem 3rem .775rem 1rem;
-    font-size: 1.1rem;
+    font-size: 1rem;
     font-weight: 500;
     line-height: 1.5;
     color: var(--bs-gray-700);
