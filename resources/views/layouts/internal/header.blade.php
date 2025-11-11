@@ -13,7 +13,7 @@
             <!--end::Aside  toggle-->
             <!--begin::Logo-->
             <a href="index.html">
-                <img alt="Logo" src="assets/media/logos/default-small.svg" class="h-25px h-lg-30px" />
+                <img alt="Logo" src="{{ asset('assets/media/logos/urbnex-white.svg') }}" class="h-25px h-lg-30px" />
             </a>
             <!--end::Logo-->
             <!--begin::Nav-->

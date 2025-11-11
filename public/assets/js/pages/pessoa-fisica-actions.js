@@ -31,6 +31,28 @@ document.addEventListener("DOMContentLoaded", function () {
         profissaoSelect.trigger("change.select2");
     }
 
+    // ===== Select2 com bandeiras =====
+    function formatFlag(option) {
+        if (!option.id) return option.text;
+
+        const flagCode = $(option.element).data('flag');
+        if (!flagCode) return option.text;
+
+        const $option = $(
+            `<span><i class="fi fi-${flagCode} me-2"></i>${option.text}</span>`
+        );
+        return $option;
+    }
+
+    if ($.fn.select2) {
+        paisSelect.select2({
+            templateResult: formatFlag,
+            templateSelection: formatFlag,
+            placeholder: "Selecione um país",
+            width: 'resolve'
+        });
+    }
+
     // ===== Eventos =====
     generoSelect.on("change", function () {
         const genero = $(this).val();
@@ -43,7 +65,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const crnmDiv = document.querySelector("#rne_crnm")?.closest(".col-lg-3");
 
     function atualizarCamposDocumento(pais) {
-        const isBrasileiro = pais === "Brasil" || pais === "BR";
+        const isBrasileiro = pais === "Brasil" || pais === "BR" || pais === "br";
         if (rgDiv) rgDiv.style.display = isBrasileiro ? "" : "none";
         if (crnmDiv) crnmDiv.style.display = isBrasileiro ? "none" : "";
     }
