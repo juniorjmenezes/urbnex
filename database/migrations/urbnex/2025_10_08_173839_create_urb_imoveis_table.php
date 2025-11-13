@@ -11,7 +11,7 @@ return new class extends Migration
         Schema::create('urb_imoveis', function (Blueprint $table) {
             $table->id();
 
-            // Características do imóvel
+            // Características do Imóvel
             $table->string('nucleo_urbano')->nullable();
             $table->string('quadra')->nullable();
             $table->string('matricula')->nullable();
@@ -26,7 +26,7 @@ return new class extends Migration
             $table->decimal('latitude', 10, 7)->nullable();
             $table->decimal('longitude', 10, 7)->nullable();
             
-            // Relacionamento com endereço
+            // Relacionamento com Endereço
             $table->foreignId('endereco_id')->nullable()->constrained('enderecos')->nullOnDelete();
 
             // Timestamps

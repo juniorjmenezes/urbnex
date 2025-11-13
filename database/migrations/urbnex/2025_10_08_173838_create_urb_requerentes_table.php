@@ -9,8 +9,11 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('urb_requerentes', function (Blueprint $table) {
+            // Campos principais
             $table->id();
             $table->enum('tipo', ['PF', 'PJ']);
+
+            // Chaves estrangeiras
             $table->foreignId('pessoa_fisica_id')->nullable()->constrained('pessoas_fisicas')->nullOnDelete();
             $table->foreignId('pessoa_juridica_id')->nullable()->constrained('pessoas_juridicas')->nullOnDelete();
             $table->timestamps();

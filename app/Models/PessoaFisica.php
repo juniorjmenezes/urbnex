@@ -21,8 +21,9 @@ class PessoaFisica extends Model
         'passaporte',
         'estado_civil',
         'profissao',
+        'telefone_1',
+        'telefone_2',
         'email',
-        'telefone',
         'endereco_id',
     ];
 

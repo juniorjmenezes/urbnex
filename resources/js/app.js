@@ -1,6 +1,6 @@
 import './bootstrap';
-import Inputmask from "inputmask";
 import './helpers/masks';
+import './helpers/forms';
 
 document.addEventListener('DOMContentLoaded', function () {
     MaskHelper.init();

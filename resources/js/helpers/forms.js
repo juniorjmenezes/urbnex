@@ -1,6 +1,6 @@
 /**
- * formHelper.js
- * Helper genérico para jQuery Validate + Notyf + TomSelect + validação de CPF/CNPJ
+ * forms.js
+ * Helper genérico para jQuery Validate + Notyf + Select2 + validação de CPF/CNPJ
  */
 (function () {
     // --- MÉTODO: Validação de CPF ---
@@ -75,8 +75,9 @@
                 $(element).removeClass("is-invalid");
             },
             errorPlacement(error, element) {
-                if ($(element).next(".ts-wrapper").length) {
-                    error.insertAfter($(element).next(".ts-wrapper"));
+                // Corrige posicionamento para Select2
+                if ($(element).hasClass("select2-hidden-accessible")) {
+                    error.insertAfter($(element).next(".select2"));
                 } else {
                     error.insertAfter(element);
                 }
@@ -84,11 +85,10 @@
 
             submitHandler: async function (formEl) {
                 const formData = new FormData(formEl);
-                const isAjax = formEl.hasAttribute("data-ajax"); // controle opcional para AJAX
+                const isAjax = formEl.hasAttribute("data-ajax");
 
                 try {
                     if (isAjax) {
-                        // Envio AJAX
                         const response = await fetch(formEl.action, {
                             method: formEl.method || "POST",
                             body: formData,
@@ -103,19 +103,20 @@
                         if (response.ok) {
                             notyf.success(data.message || "Registro salvo com sucesso!");
 
-                            // Reset de campos e TomSelect
+                            // Reset do formulário
                             formEl.reset();
                             $(".is-invalid").removeClass("is-invalid");
                             $(".invalid-feedback").remove();
 
-                            document.querySelectorAll(".ts-wrapper").forEach(wrapper => {
-                                const select = wrapper.tomselect;
-                                if (select) select.clear();
+                            // Reset Select2
+                            $(formEl).find(".select2").each(function () {
+                                $(this).val(null).trigger("change");
                             });
 
-                            // Redirecionamento se informado
+                            // Redirecionamento, se informado
                             if (data.redirect) window.location.href = data.redirect;
-                        } else if (response.status === 422) {
+                        } 
+                        else if (response.status === 422) {
                             notyf.error("Alguns campos precisam ser corrigidos.");
 
                             for (const [field, messages] of Object.entries(data.errors)) {
@@ -131,16 +132,13 @@
 
                             const firstInvalid = formEl.querySelector(".is-invalid");
                             if (firstInvalid) firstInvalid.scrollIntoView({ behavior: "smooth", block: "center" });
-
-                        } else {
+                        } 
+                        else {
                             notyf.error(data.message || "Ocorreu um erro ao salvar o formulário.");
                         }
-
                     } else {
-                        // Submit normal (não AJAX) → deixa o browser cuidar do redirect
                         formEl.submit();
                     }
-
                 } catch (error) {
                     notyf.error("Falha de conexão com o servidor.");
                     console.error("Erro AJAX:", error);

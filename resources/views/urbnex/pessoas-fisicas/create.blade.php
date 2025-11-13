@@ -47,7 +47,7 @@
                 <div class="col-lg-3">
                     <div class="mb-4">
                         <label for="data_nascimento" class="text-gray-700 mb-2">Data de Nascimento</label>
-                        <input type="text" id="data_nascimento" class="form-control" name="data_nascimento" value="{{ old('data_nascimento') }}">
+                        <input type="text" id="data_nascimento" class="form-control" name="data_nascimento" data-mask="date" value="{{ old('data_nascimento') }}">
                     </div>
                 </div>
                 <div class="col-lg-3">
@@ -100,7 +100,7 @@
                 <div class="col-lg-3">
                     <div class="mb-4">
                         <label for="cpf_cin" class="text-gray-700 mb-2">CPF/CIN</label>
-                        <input type="text" id="cpf_cin" class="form-control" name="cpf_cin" data-toggle="input-mask" data-mask-format="999.999.999-99" value="{{ old('cpf_cin') }}">
+                        <input type="text" id="cpf_cin" class="form-control" name="cpf_cin" data-mask="cpf" value="{{ old('cpf_cin') }}">
                     </div>
                 </div>
                 <div class="col-lg-3">
@@ -150,7 +150,7 @@
                 <div class="col-lg-3">
                     <div class="mb-4">
                         <label for="cep" class="text-gray-700 mb-2">CEP</label>
-                        <input type="text" id="cep" class="form-control" name="cep" data-toggle="input-mask" data-mask-format="99999-999" value="{{ old('cep') }}">
+                        <input type="text" id="cep" class="form-control" name="cep" data-mask="cep" value="{{ old('cep') }}">
                     </div>
                 </div>
                 <div class="col-lg-6">
