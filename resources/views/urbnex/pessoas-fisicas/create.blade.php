@@ -47,7 +47,7 @@
                 <div class="col-lg-3">
                     <div class="mb-4">
                         <label for="data_nascimento" class="text-gray-700 mb-2">Data de Nascimento</label>
-                        <input type="text" id="data_nascimento" class="form-control" name="data_nascimento" data-mask="date" value="{{ old('data_nascimento') }}">
+                        <input type="text" id="data_nascimento" class="form-control" name="data_nascimento" data-mask="dateBR" value="{{ old('data_nascimento') }}">
                     </div>
                 </div>
                 <div class="col-lg-3">
@@ -124,7 +124,7 @@
                 <div class="col-lg-3">
                     <div class="mb-4">
                         <label for="passaporte" class="text-gray-700 mb-2">Passaporte</label>
-                        <input type="text" id="passaporte" class="form-control" name="passaporte" value="{{ old('passaporte') }}">
+                        <input type="text" id="passaporte" class="form-control" name="passaporte" data-mask="dateBR" value="{{ old('passaporte') }}">
                     </div>
                 </div>
                 <div class="col-lg-3">

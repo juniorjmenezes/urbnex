@@ -56,7 +56,7 @@
         },
 
         // renomeado de "data" para "date" para evitar ambiguidade com atributos HTML5
-        date(selector = 'input[data-mask="data"]') {
+        dateBR(selector = 'input[data-mask="dateBR"]') {
             this._apply({ mask: '99/99/9999', showMaskOnHover: false }, selector);
         },
 
