@@ -120,7 +120,8 @@ class PessoaFisicaController extends Controller
             'estado_civil' => 'required|string|max:255',
             'profissao'    => 'required|string|max:255',
             'email'        => 'nullable|email|max:255',
-            'telefone'     => 'nullable|string|max:15',
+            'telefone_1'   => 'nullable|string|max:15',
+            'telefone_2'   => 'nullable|string|max:15',
 
             // Endereço
             'cep'         => 'required|string|max:9',
@@ -152,6 +153,8 @@ class PessoaFisicaController extends Controller
 
             $nacionalidade = $paisSelecionado['nacionalidade'][$validated['genero']] ?? 'N/A';
 
+            dd($request->all());
+
             // Criação da pessoa física
             PessoaFisica::create([
                 'nome'          => $validated['nome'],
@@ -166,7 +169,8 @@ class PessoaFisicaController extends Controller
                 'estado_civil'  => $validated['estado_civil'],
                 'profissao'     => $validated['profissao'],
                 'email'         => $validated['email'] ?? null,
-                'telefone'      => $validated['telefone'] ?? null,
+                'telefone_1'    => $validated['telefone_1'] ?? null,
+                'telefone_2'    => $validated['telefone_2'] ?? null,
                 'endereco_id'   => $endereco->id,
             ]);
 

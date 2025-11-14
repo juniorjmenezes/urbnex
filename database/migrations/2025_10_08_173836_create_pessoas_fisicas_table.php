@@ -23,8 +23,8 @@ return new class extends Migration
             $table->string('passaporte', 9)->nullable()->unique();
             $table->string('estado_civil')->nullable();
             $table->string('profissao')->nullable();
-            $table->string('telefone_1', 15);
-            $table->string('telefone_2', 15)->nullable();
+            $table->string('telefone_1', 16)->nullable();
+            $table->string('telefone_2', 16)->nullable();
             $table->string('email')->nullable();
 
             // Chave estrangeira
